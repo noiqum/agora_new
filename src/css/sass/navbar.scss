@@ -1,0 +1,142 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+
+
+.navbar{
+    display: flex;
+    justify-content:space-between;
+    width: 100%;
+    
+    background-image: linear-gradient(90deg,$blue-dark,$blue-light,$green-dark,$green-light);
+    padding: 2rem 1rem;
+    position: relative;
+
+    @include respond(middle){
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 15vh;
+        padding: 1rem;
+        align-items: center;
+    }
+    
+    &__logo{
+        color: $yellow;
+        font-size: 2rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-weight: 700;
+
+        @include respond(middle){
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    &__burger{
+        position: absolute;
+        top:2.5rem;
+        right: 1.3rem;
+        width:3rem;
+        height: 3px;
+        border-radius: 3px;
+        background-color: $yellow;
+        display: block;
+        cursor: pointer;
+        @include respond (middle){
+            display: none;
+        }
+        &::after,
+        &::before{
+            width:3rem;
+            height: 3px;
+            border-radius: 3px;
+            background-color: $yellow;
+            content: '';
+            position: absolute;
+            display: block;
+            cursor: pointer;
+            @include respond (middle){
+                display: none;
+            }
+        }
+        &::after{
+            top:0;
+            left:0;
+            transform: translateY(7px);
+            
+        }
+        &::before{
+            top:0;
+            left:0;
+            transform: translateY(-7px);
+        }
+    }
+
+    &__nav{
+       position: absolute;
+       left: 0px;
+       bottom: 60px;
+       width: 20rem;
+       margin: 1rem;
+        background-color:$blue-dark;
+        border-radius: 10px;
+
+        @include respond(middle){
+            position: unset;
+            top:unset;
+            bottom: unset;
+            width: 100%;
+            background-color: unset;
+            margin-left: 2rem;
+        }
+        @include respond(large){
+            margin-left:1rem;
+        }
+
+
+        &__list{
+            display:flex;
+            flex-direction: column;
+            justify-content: space-around;
+            flex-wrap: nowrap;
+            list-style: none;
+            align-items: flex-start;
+
+            @include respond(middle){
+                flex-direction: unset;
+                flex-wrap: unset;
+                justify-content: space-around;
+                align-items: center;
+            }
+            @include respond(large){
+                margin-right:1rem;
+            }
+
+            &__link{
+                font-size: 2rem;
+                text-transform: uppercase;
+                margin: 1.2rem;
+                color: $yellow;
+                border: 1px solid transparent;
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                height: min-content;
+                display: block;
+                &:hover{
+                    border: 1px solid peru;
+                    background-color: $blue-light;
+                    border-radius: 3px;
+
+                }
+            }
+        }
+    }
+   
+
+}
+

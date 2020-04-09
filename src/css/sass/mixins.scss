@@ -1,0 +1,16 @@
+
+
+@mixin respond($size) {
+
+    @if $size == middle{
+        @media screen and (min-width:600px){
+            @content
+        };
+    }
+    @if $size == large{
+        @media screen and (min-width:1200px){
+            @content
+        };
+    }
+    
+};
