@@ -19,6 +19,8 @@
         height: 15vh;
         padding: 1rem;
         align-items: center;
+        overflow: hidden;
+        margin-right: 0.5rem;
     }
     
     &__logo{
@@ -127,6 +129,15 @@
                 cursor: pointer;
                 height: min-content;
                 display: block;
+
+                @include respond(middle){
+                    font-size: 1.6rem;
+                    margin: 1rem;
+                }
+                @include respond(large){
+                    font-size: 2rem;
+
+                }
                 &:hover{
                     border: 1px solid peru;
                     background-color: $blue-light;

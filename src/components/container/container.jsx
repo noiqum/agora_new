@@ -1,9 +1,12 @@
 import React from 'react'
+import Aside from '../aside/aside';
+import EventDashBoard from '../eventDashBoard/eventDashBoard';
 
 function container() {
     return (
-        <div>
-            <h1>container</h1>
+        <div className='container'>
+            <EventDashBoard/>
+            <Aside/>
         </div>
     )
 }
