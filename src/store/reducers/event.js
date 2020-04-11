@@ -1,17 +1,32 @@
 
 let initialState = {
     events:[{
-        title:'title',
+        id:null,
+        title:'learn flutter',
         category:'education',
         date:'01.02.2020',
-        address:'main street',
-        description:'no need'
+        address:'red house corner 55/8 street ',
+        description:'learning flutter by peer coorperation',
+        attendee:[],
+        hostName:'flutter hamdi'
     }]
     
 };
 
-const eventReducer =(state=initialState,action)=>{
-    return state
+ export   const eventReducer =(state=initialState,action)=>{
+    switch (action.type) {
+        case 'CREATE_EVENT':
+        return {
+            
+            ...state,
+            events:state.events.concat(action.event)
+            
+        }
+    
+        default:
+            return state;
+    }
 }
 
 export default eventReducer;
+

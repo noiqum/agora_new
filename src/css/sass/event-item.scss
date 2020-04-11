@@ -52,6 +52,17 @@
         }
     }
 
+    &__category{
+        display:none;
+
+        @include respond(middle){
+            display: inline-block;
+            font-size: 1.8rem;
+            padding: 0.5rem 1rem;
+            text-transform: capitalize;
+        }
+    }
+
     &__date{
         margin-right: 0.5rem;
         margin-bottom: 0.5rem;
@@ -69,7 +80,7 @@
 
         @include respond(middle){
             font-size: 1.8rem;
-
+            text-transform: capitalize;
             padding: 0.5rem 1rem;
         }
     }
@@ -100,6 +111,8 @@
             font-size: 1.8rem;
         }
     }
+
+    
 
     &__button{
         display: none;

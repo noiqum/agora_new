@@ -14,3 +14,15 @@
     }
     
 };
+
+@mixin button {
+             width: 7rem;
+            height: 3rem;
+            margin:1rem;
+            border-radius: 5px;
+            box-shadow: unset;
+            border: unset;
+            background-color: $blue-dark;
+            color:$yellow;
+            text-transform: uppercase;
+}

@@ -1,15 +1,33 @@
-import React from 'react'
+import React, { Component } from 'react';
 import EventItem from './eventItem';
+import {connect} from 'react-redux';
 
-function eventDashBoard() {
-    return (
-        <div className='event-dash-board'>
-            <p>eventDashBoard</p>
-            <EventItem/>
-            <EventItem/>
-            <EventItem/>
-        </div>
-    )
+
+
+export class eventDashBoard extends Component {
+
+    
+
+    render() {
+        const {events}=this.props;
+        return (
+            <div className='event-dash-board'>
+            
+                {events.map(event=>{
+                 return <EventItem event={event}/>
+                    })}
+            </div>
+        )
+    }
 }
 
-export default eventDashBoard
+
+
+
+ const mapPropsToState=state=>{
+     return {
+         events:state.event.events
+     };
+ }
+
+export default connect(mapPropsToState)(eventDashBoard);
