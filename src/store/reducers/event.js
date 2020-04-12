@@ -22,7 +22,12 @@ let initialState = {
             events:state.events.concat(action.event)
             
         }
-    
+        case 'GET_EVENTS':
+            return {
+                ...state,
+                events:state.events.concat(Object.values(action.events))
+            
+            }
         default:
             return state;
     }

@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import EventItem from './eventItem';
 import {connect} from 'react-redux';
+import { initEvents} from '../../store/actions/eventActions';
 
 
 
 export class eventDashBoard extends Component {
 
-    
+    componentDidMount(){
+        this.props.initEvents();
+        console.log(this.props.events);
+    }
 
     render() {
         const {events}=this.props;
@@ -29,5 +33,10 @@ export class eventDashBoard extends Component {
          events:state.event.events
      };
  }
+ const mapDispatchToProps =dispatch=>{
+     return{
+         initEvents:()=>dispatch(initEvents())
+     }
+ }
 
-export default connect(mapPropsToState)(eventDashBoard);
+export default connect(mapPropsToState,mapDispatchToProps)(eventDashBoard);

@@ -7,13 +7,27 @@ import rootReducer from './store/reducers/index';
 import { Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
+// import {reduxFirestore, getFirestore,createFirestoreInstance} from 'redux-firestore';
+// import {ReactReduxFirebaseProvider, getFirebase} from 'react-redux-firebase';
+// import firebaseConfig from './config/firebaseConfig';
+// import firebase from 'firebase/app';
+
+
+
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store=createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+const store=createStore(rootReducer, composeEnhancers(
+  applyMiddleware(thunk)
+  ));
+
+  
 
 ReactDOM.render(
   <Provider store={store}>
   <React.StrictMode>
+    
     <App />
+  
   </React.StrictMode>
   </Provider>,
   document.getElementById('root')

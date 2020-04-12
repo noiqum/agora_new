@@ -42,6 +42,7 @@ export class eventForm extends Component {
                     <div className="eventform__category__div">
                         <label htmlFor="category" className="eventform__category-label">Category</label>
                         <select  onChange={this.handleInfo} name="category"  className="eventfrom__category">
+                            <option value="please pick a category" className='event__category__option'>please pick a category</option>
                             <option value="education" className="event__category__option">education</option>
                             <option value="networking" className="event__category__option">networking</option>
                             <option value="cultural" className="event__category__option">cultural</option>

@@ -21,7 +21,7 @@ function eventItem({event}) {
                 <img src={picUrlRandom()} alt="attendees" className="event__attendee__img"/>
                 <span className="event__attendee__counter">2</span>
             </div>
-            <div className="event__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, voluptatibus.</div>
+            <div className="event__description">{event.description}</div>
             <div className="event__button">
             <button className="event__button-item view">view</button><button className="event__button-item update">update</button>
             </div>
