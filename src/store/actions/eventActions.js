@@ -11,8 +11,9 @@ firebase.initializeApp(firebaseConfig);
     return (dispatch)=>{
         firebase.firestore().collection('events').add(event)
         .then(docRef=>{
-            console.log(docRef.id)
-
+            
+            event.id=docRef.id;
+            
             dispatch({type:'CREATE_EVENT',event});  
         })
         .catch(err=>console.log(err))
@@ -39,7 +40,7 @@ firebase.initializeApp(firebaseConfig);
                     events_arr.push(doc.data());
                 })
                 let events={...[...events_arr]}
-                console.log(events)
+                
                 
               dispatch(getEvents(events))
         }).catch(err=>console.error(err));

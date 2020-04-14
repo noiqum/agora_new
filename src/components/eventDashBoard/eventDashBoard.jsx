@@ -9,7 +9,7 @@ export class eventDashBoard extends Component {
 
     componentDidMount(){
         this.props.initEvents();
-        console.log(this.props.events);
+        
     }
 
     render() {

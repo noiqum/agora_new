@@ -12,7 +12,8 @@ export class eventForm extends Component {
             category:'',
             date:'',
             address:'',
-            description:''
+            description:'',
+            hostName:'noi'
         }
         
         handleInfo=(e)=>{

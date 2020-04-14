@@ -1,0 +1,9 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+
+.auth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
