@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import gsap from 'gsap';
 import {connect} from 'react-redux';
-import {loginButtonClick} from '../../store/actions/authActions';
+import {loginButtonClick,signupClick} from '../../store/actions/authActions';
 import {Redirect} from 'react-router-dom';
+import Error from './error';
+
 
 export class login extends Component {
 
@@ -33,10 +35,11 @@ export class login extends Component {
                     duration:1.5,ease:'power2.out',scale:1
                 })
                 gsap.to('.text',{
-                    duration:1.7,ease:'power2.out',css:{
+                    duration:1.9,ease:'power2.out',css:{
                         opacity:1
                     },stagger:{
-                        each:0.1
+                        each:0.1,
+                        from:'end'
                     }
                 })
                
@@ -53,12 +56,21 @@ export class login extends Component {
      loginHandler=()=>{
          if(this.state.email !== null & this.state.password !== null){
             this.props.onLoginClick(this.state.email,this.state.password);
-         }}
+         }
+         if(this.props.loginError !== null){
+             gsap.to('.error__msg__container',{duration:0.7,ease:'expo.inout',x:0})
+         }
+        }
+         
     keyPress=(e)=>{
         
        if(e.key === 'Enter'){
            this.loginHandler()
        }else{return null}
+    }
+    // for mobile version signup link
+    signupHandler=()=>{
+        this.props.onSignupClick()
     }
     render() {
         return (
@@ -75,7 +87,7 @@ export class login extends Component {
                     <input onChange={this.changeHandler} name='password'type="password" required className="login__password-input"/>
                 </div>
                 <div className="login__button-div">
-                    <span className="login__button-register">wanna register?</span>
+                    <span onClick={this.signupHandler} className="login__button-register">wanna register?</span>
                     <button onKeyPress={this.keyPress} onClick={this.loginHandler} className="login__button-submit">Log in</button>
                 </div>
 
@@ -115,6 +127,8 @@ export class login extends Component {
                 </div>
             </div>
             {this.props.loginStatus && <Redirect to='/'/>}
+            {this.props.loginError !==null && <Error/>}
+            {this.props.signupStatus && <Redirect to={'/signup'}/>}
         </div>    
         )
     }
@@ -122,13 +136,16 @@ export class login extends Component {
 
 const mapDispatchToProps=dispatch=>{
     return{
-        onLoginClick:(email,password)=>{dispatch(loginButtonClick(email,password))}
+        onLoginClick:(email,password)=>{dispatch(loginButtonClick(email,password))},
+        onSignupClick:()=>{dispatch(signupClick())}
     }
 }
 
 const mapStateToProps=state=>{
     return{
-        loginStatus:state.auth.login
+        loginStatus:state.auth.login,
+        loginError:state.auth.error,
+        signupStatus:state.auth.signup
     }
 }
 

@@ -26,3 +26,10 @@
             color:$yellow;
             text-transform: uppercase;
 }
+
+@mixin center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

@@ -9,6 +9,8 @@ const linkStyle ={
     'text-decoration':'none'
 };
 
+let screenwidth =window.innerWidth;
+console.log(screenwidth);
 export class navbar extends Component {
 
     constructor(props){
@@ -25,25 +27,49 @@ export class navbar extends Component {
         if(this.state.burgerClicked===false){
         gsap.to('.navbar__nav',{duration:1.5,y:450,ease:'power2.out'})
         this.setState({burgerClicked:true})
+        gsap.to('.navbar__burger-2',{
+            opacity:0,duration:1,x:-10,ease:'power2.out'}
+        )
+        gsap.to('.navbar__burger-1',{duration:1,ease:'power2.out',rotate:45,transformOrigin:'20% 50% 7px'})
+        gsap.to('.navbar__burger-3',{duration:1,ease:'power2.out',rotate:-45,transformOrigin:'20% 50% 7px'})
         }
         if(this.state.burgerClicked===true){
             gsap.to('.navbar__nav',{duration:1.5,y:0,ease:'power2.out'})
             this.setState({burgerClicked:false})
+            gsap.to('.navbar__burger-2',{
+                opacity:1,duration:1,x:0,ease:'power2.out'}
+            )
+            gsap.to('.navbar__burger-1',{duration:1,ease:'power2.out',rotate:0,translate:-7})
+            gsap.to('.navbar__burger-3',{duration:1,ease:'power2.out',rotate:0,translate:7})
         }
     }
 
     handleLogin=()=>{
         this.props.onLoginClick();
         this.setState({login:this.props.loginState});
+        if(screenwidth < 600 ){
+            this.handleBurger();
+        }
         }
     handleLogout=()=>{
         this.props.onLogoutClick();
+        if(screenwidth < 600 ){
+            this.handleBurger();
+        }
+        
+    }
+    handleSignup=()=>{
+        if(screenwidth <600){
+            this.handleBurger();
+        }
     }
     render() {
         return (
         <div className='navbar'>
             <Link style={linkStyle} to='./'><div className="navbar__logo">agora</div></Link>
-            <div className="navbar__burger" onClick={this.handleBurger}></div>
+            <div className="navbar__burger-1" onClick={this.handleBurger}></div>
+            <div className="navbar__burger-2" onClick={this.handleBurger}></div>
+            <div className="navbar__burger-3" onClick={this.handleBurger}></div>
             <Navlink 
              loginClicked={this.handleLogin} 
              signupClicked ={this.handleSignup} 

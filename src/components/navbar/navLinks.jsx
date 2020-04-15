@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom';
 export default function navLinks({signup,login,loginClicked,signupClicked,logoutClicked}) {
 
     const linkStyle ={
-        'text-decoration':'none'
+        'textDecoration':'none',
+        ':active':'{border:none}'
     };
    
 
@@ -13,7 +14,7 @@ export default function navLinks({signup,login,loginClicked,signupClicked,logout
         <div>
         <nav className='navbar__nav'>
                 <ul className="navbar__nav__list">
-                    {login && <Link style={linkStyle} to='./event'> <li className="navbar__nav__list__link">event</li></Link>}
+                    {login && <Link className='link-router' to='./event'> <li className="navbar__nav__list__link">event</li></Link>}
                     {login && <Link style={linkStyle} to='./people'><li className="navbar__nav__list__link">people</li></Link> }
                     {!login && <Link style={linkStyle} to='./login'> <li onClick={loginClicked} className="navbar__nav__list__link">log in</li></Link>}
                     { login && <li onClick={logoutClicked} className="navbar__nav__list__link">log out</li>}

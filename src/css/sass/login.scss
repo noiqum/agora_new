@@ -60,6 +60,22 @@
         overflow: hidden;
         width: 7rem;
         justify-self: end;
+        cursor: pointer;
+        }
+
+        &-register{
+            font-size: 1.2rem;
+            border-bottom: 1px solid $blue-dark;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 0.5rem 0rem;
+            text-transform: capitalize;
+            letter-spacing: 2px;
+            background-image:linear-gradient(90deg,$blue-dark,$green-dark);
+            background-clip: text;
+            color:transparent;
+            cursor: pointer;
         }
     }
 }
@@ -154,5 +170,8 @@
     &__login{
         text-decoration: underline;
         cursor: pointer;
+        &:hover{
+            color: peru;
+        }
     }
 }

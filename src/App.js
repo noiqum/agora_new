@@ -4,6 +4,7 @@ import Navbar from './components/navbar/navbar';
 import {BrowserRouter,Switch ,Route} from 'react-router-dom';
 import Container from './components/container/container';
 import Login from './components/auth/login';
+import Signup from './components/auth/signup';
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
           <Route path='/event'/>
           <Route path='/people'/>
           <Route path='/login' component={Login} />
-          <Route path='/signup'/>
+          <Route path='/signup' component={Signup}/>
       </Switch>
     </div>
   
