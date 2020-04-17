@@ -127,7 +127,7 @@ export class login extends Component {
                 </div>
             </div>
             {this.props.loginStatus && <Redirect to='/'/>}
-            {this.props.loginError !==null && <Error/>}
+            {this.props.loginError !==null && <Error errorMsg={this.props.loginError}/>}
             {this.props.signupStatus && <Redirect to={'/signup'}/>}
         </div>    
         )

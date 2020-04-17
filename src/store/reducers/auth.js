@@ -9,7 +9,9 @@ const initialstate={
     login:false,
     signup:false,
     error:null,
-    loginForm:false
+    loginForm:false,
+    signupProcess:false,
+    signupError:null
 };
 
 
@@ -49,6 +51,29 @@ const authReducer =(state=initialstate,action)=>{
                 ...state,
                 signup:false,
                 loginForm:true
+            }
+
+        case 'SIGNUP_FORM_CLICK':
+            return{
+                ...state,
+            
+            }
+        case 'SIGNUP_SUCCESS':
+            return{
+                ...state,
+                signupProcess:true
+            }
+        case 'SIGNUP_FAILED':
+            return{
+                ...state,
+                signupProcess:false,
+                signupError:action.error
+            }
+        case 'ERROR_MSG_CLOSE':
+            return{
+                ...state,
+                signupError:null,
+                error:null
             }
         default:
             return state;
