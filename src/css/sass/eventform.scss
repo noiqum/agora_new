@@ -52,11 +52,13 @@
 
         & > button{
             @include button;
+            
         }
 
         & > button:hover{
             background-color: grey;
             color:white;
+            
         }
     }
 }
