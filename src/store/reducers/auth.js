@@ -22,17 +22,15 @@ const authReducer =(state=initialstate,action)=>{
           case 'LOGIN_SUCCESS':
             return{
                 ...state,
-                user:{
-                    ...state.user,
-                    [action.user]:action.user
-                },
+                user:action.user,
                 login:true,
                 error:null
                 }
         case 'LOGOUT':
             return{
                 ...state,
-                login:false
+                login:false,
+                signup:false
             }
         case 'LOGIN_FAILED':
             return {

@@ -1,0 +1,29 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+.attendee{
+    max-width: 10rem;
+    max-height: 12rem;
+    border: 2px solid $grey-light;
+    margin-top: 2rem;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px $grey-light;
+    padding: 1rem 1rem;
+    @include center;
+    margin-right: 2rem;
+
+    & p{
+        font-size: 1.6rem;
+        text-align: center;
+        color: $blue-dark;
+        margin-top: 0.5rem;
+        
+    }
+
+    & img {
+        border-radius: 50%;
+        border: 1px solid white;
+        display: inline-block;
+        border: 5px solid $blue-dark;
+    }
+}

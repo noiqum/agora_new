@@ -9,8 +9,11 @@ let initialState = {
         description:'learning flutter by peer coorperation',
         attendee:[],
         hostName:'flutter hamdi'
-    }]
-    
+    }],
+    joinProcess:false,
+    joinProcessStart:false,
+    joinProcessFinish:false,
+    attendee:null
 };
 
  export   const eventReducer =(state=initialState,action)=>{
@@ -25,11 +28,38 @@ let initialState = {
         case 'GET_EVENTS':
             return {
                 ...state,
-                events:state.events.concat(Object.values(action.events))
+                events:Object.values(action.events)
             
+            }
+        case 'JOIN_EVENT_CLICK':
+            return {
+                ...state,
+                joinProcess:true
+            }
+
+        case 'CANCEL_JOIN':
+            return{
+                ...state
+            }
+        case 'JOIN_EVENT_CLICK_START':
+            return{
+                ...state,
+                joinProcessStart:true
+            }
+        case 'JOIN_EVENT_CLICK_FINISH':
+            return {
+                ...state,
+                joinProcessStart:false,
+                joinProcessFinish:true
+            }
+        case 'GET_ATTENDEE_TO_STORE':
+            return {
+                ...state,
+                attendee:action.attendee
             }
         default:
             return state;
+            
     }
 }
 

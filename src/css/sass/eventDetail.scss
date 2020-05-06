@@ -1,0 +1,20 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+
+.event-detail-container{
+    display: flex;
+    @include center;
+    
+    @include respond(middle){
+        display: grid;
+        grid-template-columns: 60% 40%;
+        grid-template-rows: 30% 20% 1fr 1fr;
+    }
+
+    & h1{
+        @include respond(middle){
+            display: none;
+        }
+    }
+}

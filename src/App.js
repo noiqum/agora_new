@@ -5,6 +5,8 @@ import {BrowserRouter,Switch ,Route} from 'react-router-dom';
 import Container from './components/container/container';
 import Login from './components/auth/login';
 import Signup from './components/auth/signup';
+import EventDetail from './components/eventDetail/eventDetail';
+
 
 function App() {
 
@@ -16,10 +18,11 @@ function App() {
       <Navbar/>
       <Switch>
           <Route path='/' exact component={Container}/>
-          <Route path='/event'/>
+          <Route path='/event'   component={Container}/>
           <Route path='/people'/>
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup}/>
+          <Route path='/event-detail/:id'exact component={EventDetail}/>
       </Switch>
     </div>
   

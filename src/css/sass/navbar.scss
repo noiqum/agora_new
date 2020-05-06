@@ -132,6 +132,7 @@
                 cursor: pointer;
                 height: min-content;
                 display: block;
+                outline: none;
 
                 @include respond(middle){
                     font-size: 1.6rem;

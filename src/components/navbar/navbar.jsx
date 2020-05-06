@@ -10,7 +10,7 @@ const linkStyle ={
 };
 
 let screenwidth =window.innerWidth;
-console.log(screenwidth);
+
 export class navbar extends Component {
 
     constructor(props){
@@ -66,7 +66,7 @@ export class navbar extends Component {
     render() {
         return (
         <div className='navbar'>
-            <Link style={linkStyle} to='./'><div className="navbar__logo">agora</div></Link>
+            <Link style={linkStyle} to='/'><div className="navbar__logo">agora</div></Link>
             <div className="navbar__burger-1" onClick={this.handleBurger}></div>
             <div className="navbar__burger-2" onClick={this.handleBurger}></div>
             <div className="navbar__burger-3" onClick={this.handleBurger}></div>
@@ -76,6 +76,7 @@ export class navbar extends Component {
              login={this.props.loginState} 
              signup={this.state.signup}
              logoutClicked={this.handleLogout}
+             username={this.props.username}
              />
             
         </div>
@@ -86,7 +87,8 @@ export class navbar extends Component {
 const mapStateToProps=(state)=>{
    return  {
        loginState:state.auth.login,
-       signupState:state.auth.signup
+       signupState:state.auth.signup,
+       username:state.auth.user.displayName
     };
 }
 const mapDispatchToProps=dispatch=>{

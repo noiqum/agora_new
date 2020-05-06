@@ -30,15 +30,20 @@ export const loginButtonClick=(email,password)=>{
             if(res.user.uid !== ' '){
                 firebase.auth().onAuthStateChanged((userInfo)=>{
                     const user={
-                        displayName:userInfo.displayName,
+                        
                         email:userInfo.email,
                         userId:userInfo.uid,
                         people:userInfo.people,
                         events:userInfo.events
                       }  
+                      firebase.firestore().collection('user').doc(user.userId).get().then(
+                          res=>{
+                              return user.displayName=res.data().displayName;
+                          }
+                      )
                       
                       dispatch(loginSuccess(user))
-                  })
+                })
       
             }
         }

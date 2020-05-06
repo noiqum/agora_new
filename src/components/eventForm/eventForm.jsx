@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect} from 'react-redux';
 import { createEvent} from '../../store/actions/eventActions';
+// import AutoComplete from './autoComplete';
+
+
 
 
 
@@ -11,27 +14,38 @@ export class eventForm extends Component {
             title:'',
             category:'',
             date:'',
+            city:'',
             address:'',
             description:'',
-            hostName:'noi'
+            hostName:'',
+            hostUserId:'',
+            attendee:[]
         }
         
         handleInfo=(e)=>{
             this.setState({
-                [e.target.name]:e.target.value
+               
+                [e.target.name]:e.target.value,
+                hostName:this.props.displayName,
+                hostUserId:this.props.userId,
             })
         }
 
         handleForm=(e)=>{
             e.preventDefault();
+           
             this.props.createEvent(this.state)
         }
 
-
+        
+       
+        
 
     render() {
         return (
+            
             <div className='eventform' >
+                
                 <form className='eventform__form'>
                     <div className="eventform__title__div">
     
@@ -56,6 +70,12 @@ export class eventForm extends Component {
                         <label htmlFor="date" className="eventform__date-label">Date</label>
                         <input onChange={this.handleInfo} type="date" className="eventform__date" name='date'/>
                     </div>
+                    <div className="eventform__city__div">
+                        <label htmlFor="city" className="eventform__address-label">City</label> 
+                        <input onChange={this.handleInfo} name='city'type="text" className="eventform__category__address"/>
+                        
+                    </div>
+
                     <div className="eventform__address__div">
                         <label htmlFor="address" className="eventform__address-label">Address</label>
                         <input onChange={this.handleInfo} name='address'type="text" className="eventform__category__address"/>
@@ -68,7 +88,7 @@ export class eventForm extends Component {
     
                     <div className="eventform__button__div">
                         <button onClick={this.handleForm} className="eventform__button">submit</button>
-                        <button className="eventform__button">cancel</button>
+                        <button onClick={this.props.onCancelClick}className="eventform__button">cancel</button>
                     </div>
                    
                 </form>
@@ -82,7 +102,13 @@ const mapDispatchToProps=(dispatch)=>{
         createEvent:(event)=>dispatch(createEvent(event))
     }
 }
+const mapStateToProps=state=>{
+    return{
+        userId:state.auth.user.userId,
+        displayName:state.auth.user.displayName
+    }
+}
 
-export default connect(null,mapDispatchToProps) (eventForm);
+export default connect(mapStateToProps,mapDispatchToProps) (eventForm);
 
 

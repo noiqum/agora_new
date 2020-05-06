@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import {  Link} from 'react-router-dom';
+
 
 function eventItem({event}) {
 
@@ -8,14 +10,19 @@ function eventItem({event}) {
         let result=url+num+'.jpg';
         return result;
     }
+    
+    
+    
 
+    
 
     return (
+       
         <div className='event'>
             <h3 className="event__title">{event.title}</h3>
             <p className="event__hostname">{event.hostName}</p>
-    <p className="event__category">{event.category}</p>
-    <span className="event__date">{event.date}</span><span className="event__address">{event.address}</span>
+            <p className="event__category">{event.category}</p>
+            <span className="event__date">{event.date}</span><span className="event__address">{event.address}</span>
             <div className="event__attendee">
                 <img src={picUrlRandom()} alt="attendees" className="event__attendee__img"/>
                 <img src={picUrlRandom()} alt="attendees" className="event__attendee__img"/>
@@ -23,10 +30,16 @@ function eventItem({event}) {
             </div>
             <div className="event__description">{event.description}</div>
             <div className="event__button">
-            <button className="event__button-item view">view</button><button className="event__button-item update">update</button>
+            <Link  to={{pathname:`/event-detail/${event.id}`,hash:`#${event.id}`,query:{attendeeArr:event.attendee}}}><button  className="event__button-item view">view</button></Link>
+            
             </div>
         </div>
+        
     )
 }
 
-export default eventItem
+
+
+
+
+export default (eventItem);

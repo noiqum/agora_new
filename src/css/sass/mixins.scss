@@ -25,6 +25,8 @@
             background-color: $blue-dark;
             color:$yellow;
             text-transform: uppercase;
+            text-align: center;
+            cursor: pointer;
 }
 
 @mixin center{

@@ -1,0 +1,38 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+.calendar,
+.info-svg,
+.location{
+    width:4rem;
+    height: 4rem;
+    display: inline-block;
+    margin: 1rem;
+
+}
+
+.event-info{
+
+    &__container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: flex-start;
+        margin: 2rem;
+        font: 1.6rem;
+        @include respond(middle){
+            grid-row: 2/3;
+            grid-column: 1/2;
+            width: 60%;
+            margin:3rem;
+            font-size: 1.8rem;
+        }
+    }
+    &__location,
+    &__info,
+    &__calendar{
+        border-bottom: 1px solid $grey-light;
+        padding: 1rem 2rem;
+        margin:0rem 2rem;
+    }
+}

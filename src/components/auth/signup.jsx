@@ -88,11 +88,13 @@ export class signup extends Component {
             this.props.onSignupClick(this.state.email,this.state.password,this.state.displayName)
         }
     };
+
     handlerChange=(e)=>{
         this.setState({
             [e.target.name]:e.target.value
         })
     }
+    
     render() {
         return (
             <div>
@@ -133,21 +135,23 @@ export class signup extends Component {
                 <div className="signup-form__header">
                     <div className="signup-form__header-img"></div>
                 </div>
-                <div className="singup-form__displayname">
-                    <label htmlFor="form-display" className="signup-form__displayName-label">Name :</label>
-                    <input  name='form-display'type="text" className="singup-form__display-input"/>
+                <div className="signup-form__displayname">
+                    <label htmlFor="displayName" className="signup-form__displayName-label">Name :</label>
+                    <input  onChange={this.handlerChange} name='displayName'type="text" className="singup-form__display-input"/>
                 </div>
                 <div className="signup-form__email">
-                    <label htmlFor="form-email" className="signup-form__email-label">Email :</label>
-                    <input  name='form-email'type="email" className="signup-form__email-input"/>
+                    <label htmlFor="email" className="signup-form__email-label">Email :</label>
+                    <input  onChange={this.handlerChange} name='email'type="email" className="signup-form__email-input"/>
                 </div>
                 <div className="signup-form__password">
-                    <label htmlFor="form-password" className="signup-form__password-label">Password :</label>
-                    <input name='form-password'type="password" className="signup-form__password-input"/>
+                    <label htmlFor="password" className="signup-form__password-label">Password :</label>
+                    <input onChange={this.handlerChange} name='password'type="password" className="signup-form__password-input"/>
                 </div>
                 <div className="signup-form__button">
-                    <div className="signup-form__button-text">Sign Up</div>
+                    <div onClick={this.handlerSignup} className="signup-form__button-text">Sign Up</div>
                 </div>
+                {this.props.signupStatus && <Redirect to='./login'/>}
+                {!this.props.signupStatus &&  this.props.signupError !== null && <Error errorMsg={this.props.signupError}/>}
             </div>
             </div>
         )

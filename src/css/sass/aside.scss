@@ -1,0 +1,14 @@
+@import  './mixins.scss';
+@import './variables.scss';
+
+.aside__button{
+
+    @include button;
+    font-size: 1.2rem;
+
+    @include respond (middle){
+        @include button;
+        width: 10rem;
+    }
+    
+}

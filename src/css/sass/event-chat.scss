@@ -1,0 +1,17 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+
+.event-chat{
+
+    &__container{
+        @include respond(middle){
+            grid-row: 3/4;
+            grid-column: 1/2;
+            width: 60%;
+            margin: 3rem;
+    
+        }
+       
+    }
+}

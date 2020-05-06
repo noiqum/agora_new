@@ -6,11 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import rootReducer from './store/reducers/index';
 import { Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+import ReduxToastr from 'react-redux-toastr';
 
-// import {reduxFirestore, getFirestore,createFirestoreInstance} from 'redux-firestore';
-// import {ReactReduxFirebaseProvider, getFirebase} from 'react-redux-firebase';
-// import firebaseConfig from './config/firebaseConfig';
-// import firebase from 'firebase/app';
 
 
 
@@ -25,7 +23,11 @@ const store=createStore(rootReducer, composeEnhancers(
 ReactDOM.render(
   <Provider store={store}>
   <React.StrictMode>
-    
+    <ReduxToastr
+    position='bottom-right'
+    transitionIn="fadeIn"
+    transitionOut="fadeOut"
+    />
     <App />
   
   </React.StrictMode>
