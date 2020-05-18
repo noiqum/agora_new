@@ -1,6 +1,8 @@
 
+
 import 'firebase/auth';
 import 'firebase/firestore';
+
 
 
 var firebaseConfig = {
@@ -12,8 +14,8 @@ var firebaseConfig = {
     messagingSenderId: "1020490976009",
     appId: "1:1020490976009:web:0cefa0f466534a3ca0e1d8"
   };
-  // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
+  
+  // firebase.initializeApp(firebaseConfig);
   
 
 

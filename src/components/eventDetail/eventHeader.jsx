@@ -9,8 +9,7 @@ export class eventHeader extends Component {
 
         state={
             loginNeed:false,
-            joinCancel:false,
-            joinProcessStart:null,
+            loginProcess:false
             
         }
    
@@ -30,24 +29,22 @@ export class eventHeader extends Component {
                 })
             }
             if(this.props.loginStatus){
-                console.log('ok')
                 this.props.onJoinClick(this.eventIdSelected,this.props.userId);
-                
-                
+                this.setState({
+                    loginProcess:true
+                })        
             }
         }
 
         cancelHandler=()=>{
            
-                  this.props.onCancelClick(this.eventIdSelected,this.props.userId)
-                this.setState({joinCancel:true})
+                this.props.onCancelClick(this.eventIdSelected,this.props.userId)
+                
         }
 
         componentDidUpdate(){
-            if(this.state.joinCancel){
-                document.getElementById('trycancel').style.display='none';
-                
-            }
+            console.log('updated')
+            console.log(this.selectedEvent.attendee.includes(this.props.userId))
         }
     
     render() {
@@ -92,10 +89,7 @@ const mapStateToProps=state=>{
         loginStatus:state.auth.login,
         userId:state.auth.user.userId,
         displayName:state.auth.user.displayName,
-        joinProcess:state.event.joinProcess,
-        joinProcessStart:state.event.joinProcessStart,
-        joinProcessFinish:state.event.joinProcessFinish
-
+        
     }
 }
 const mapDispatchToProps=dispatch=>{

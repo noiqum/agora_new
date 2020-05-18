@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {getAttendee} from '../../store/actions/eventActions';
 import firebase from 'firebase/app'
 
+
 export class attendee extends Component {
 
     state={

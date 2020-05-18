@@ -5,8 +5,9 @@ import {connect} from 'react-redux';
 import { loginModal , logout } from '../../store/actions/authActions';
 import {Link} from 'react-router-dom';
 
+
 const linkStyle ={
-    'text-decoration':'none'
+    textDecoration:'none'
 };
 
 let screenwidth =window.innerWidth;
@@ -18,10 +19,12 @@ export class navbar extends Component {
         this.state={
             burgerClicked:false,
             login:this.props.loginState,
-            signup:this.props.signupState
+            signup:this.props.signupState,
             
         }
     }
+
+    
 
     handleBurger=()=>{
         if(this.state.burgerClicked===false){
