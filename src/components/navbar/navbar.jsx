@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import {connect} from 'react-redux';
 import { loginModal , logout } from '../../store/actions/authActions';
 import {Link} from 'react-router-dom';
+import firebase from 'firebase/app';
 
 
 const linkStyle ={
@@ -20,10 +21,21 @@ export class navbar extends Component {
             burgerClicked:false,
             login:this.props.loginState,
             signup:this.props.signupState,
-            
+            currentUser:null
         }
     }
 
+    unSubcribeFromAuth=null;
+    componentDidMount(){
+        this.unSubcribeFromAuth=firebase.auth().onAuthStateChanged(user=>{
+            this.setState({
+                currentUser:user
+            })
+        })
+    }
+    componentWillUnmount(){
+        
+    }
     
 
     handleBurger=()=>{

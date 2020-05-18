@@ -28,13 +28,13 @@ export const loginButtonClick=(email,password)=>{
         firebase.auth().signInWithEmailAndPassword(email,password)
         .then(res=>{
             if(res.user.uid !== ' '){
-                firebase.auth().onAuthStateChanged((userInfo)=>{
+                
                     const user={
                         
-                        email:userInfo.email,
-                        userId:userInfo.uid,
-                        people:userInfo.people,
-                        events:userInfo.events
+                        email:res.user.email,
+                        userId:res.user.uid,
+                        people:res.user.people,
+                        events:res.user.events
                       }  
                       firebase.firestore().collection('user').doc(user.userId).get().then(
                           res=>{
@@ -43,10 +43,10 @@ export const loginButtonClick=(email,password)=>{
                       )
                       
                       dispatch(loginSuccess(user))
-                })
+                }
       
             }
-        }
+    
     )
         .catch(err=>dispatch(loginFailed(err.message)))
 

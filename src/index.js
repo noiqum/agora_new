@@ -8,6 +8,8 @@ import { Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import ReduxToastr from 'react-redux-toastr';
+import {PersistGate} from 'redux-persist/integration/react';
+import {persistStore} from 'redux-persist';
 
 
 
@@ -17,7 +19,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store=createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
   ));
-
+  const persistor=persistStore(store);
   
 
 ReactDOM.render(
@@ -28,8 +30,9 @@ ReactDOM.render(
     transitionIn="fadeIn"
     transitionOut="fadeOut"
     />
+    <PersistGate persistor={persistor}>
     <App />
-  
+    </PersistGate>
   </React.StrictMode>
   </Provider>,
   document.getElementById('root')
