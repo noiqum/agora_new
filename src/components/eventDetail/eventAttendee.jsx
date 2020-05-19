@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux';
 import Attendee from './attendee';
 
 
 export class eventAttendee extends Component {
 
-    attendeeArray=this.props.attendeeArr;
+    eventListFromRedux=this.props.events;
+    eventIdPassedByParent=this.props.id;
+    selectedEvent=this.eventListFromRedux.filter(
+        event => event.id===this.eventIdPassedByParent
+    )[0];
+    attendeesOfSelectedEvent=this.selectedEvent.attendee;
       
         
 
     render() {
+        console.log(this.attendeesOfSelectedEvent)
         return (
             <div className='event-attendee__container'>
                 <h2>Who is going to this event..</h2>
                 <div className="event-attendee__frame">
-                {   (this.attendeeArray !== undefined) ?
-                    this.attendeeArray.map(attendee=>{
+                {   (this.attendeesOfSelectedEvent !== undefined) ?
+                    this.attendeesOfSelectedEvent.map(attendee=>{
                         return <Attendee key={Attendee} attendeeId={attendee}/>
                     })
                     :
@@ -27,6 +33,11 @@ export class eventAttendee extends Component {
     }
 }
 
+const mapStateToProps=state=>{
+    return{
+        events:state.event.events
+    }
+}
 
  
-export default eventAttendee;
+export default connect(mapStateToProps)(eventAttendee);

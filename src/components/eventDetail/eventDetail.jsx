@@ -11,10 +11,10 @@ export class eventDetail extends Component {
         return (
             <div className='event-detail-container'>
                 <h1>event detail</h1>
-                <EventHeader id={this.props.location.hash.slice(1)}/>
-                <EventInfo id={this.props.location.hash.slice(1)} /> 
-                <EventChat id={this.props.location.hash.slice(1)}/>
-                <EventAttendee  attendeeArr={this.props.location.query.attendeeArr} id={this.props.location.hash.slice(1)}/>
+                <EventHeader id={this.props.match.params.id}/>
+                <EventInfo id={this.props.match.params.id} /> 
+                <EventChat id={this.props.match.params.id}/>
+                <EventAttendee   id={this.props.match.params.id}/>
             </div>
         )
     }
