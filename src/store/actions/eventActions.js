@@ -35,25 +35,41 @@ firebase.initializeApp(firebaseConfig);
     }
  }
 
- export const initEvents=()=>{
-     return dispatch => {
-         firebase.firestore().collection('events').get().then(
-            snapshot=>{
-                let events_arr=[];
-                snapshot.docs.forEach(doc=>{
-                    let event=doc.data();
-                    event['id']=doc.id;
-                    events_arr.push(event);
+//  export const initEvents=()=>{
+//      return dispatch => {
+//          firebase.firestore().collection('events').get().then(
+//             snapshot=>{
+//                 let events_arr=[];
+//                 snapshot.docs.forEach(doc=>{
+//                     let event=doc.data();
+//                     event['id']=doc.id;
+//                     events_arr.push(event);
                     
-                })
-                let events={...[...events_arr]}
+//                 })
+//                 let events={...[...events_arr]}
                 
                
-              dispatch(getEvents(events))
-        }).catch(err=>console.error(err));
+//               dispatch(getEvents(events))
+//         }).catch(err=>console.error(err));
          
-     }
- }
+//      }
+//  }
+
+export const initEvents=()=>{
+    return dispatch=>{
+        firebase.firestore().collection('events').onSnapshot(snapshot=>{
+            let events_arr=[];
+            snapshot.docs.forEach(doc=>{
+                let event=doc.data();
+                event['id']=doc.id;
+                events_arr.push(event);
+            })
+
+            let events={...[...events_arr]}
+            dispatch(getEvents(events))
+        })
+    }
+}
 
  export const joinEventClick=()=>{
      return{

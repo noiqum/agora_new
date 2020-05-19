@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
-import {joinEvent,onCancelClick} from '../../store/actions/eventActions';
+import {Redirect,withRouter} from 'react-router-dom';
+import {joinEvent,onCancelClick,initEvents} from '../../store/actions/eventActions';
 
 
 
@@ -9,18 +9,32 @@ export class eventHeader extends Component {
 
         state={
             loginNeed:false,
-            loginProcess:false
-            
+            loginProcess:false,
+            selectedEvent:null,
+            cancelProcess:false
         }
    
-        eventIdSelected=this.props.id;
-        events=this.props.events;
-        arr=this.events.filter((event)=>{
-            return event.id === this.eventIdSelected
-        })
-        selectedEvent=this.arr[0];
         
-       
+        
+       componentDidMount(){
+        let eventIdSelected=this.props.id;
+        let events=this.props.events;
+        let arr=events.filter((event)=>{
+            return event.id === eventIdSelected
+        })
+        let selectedEventById=arr[0];
+        this.setState({selectedEvent:selectedEventById})
+       }
+
+       componentDidUpdate(){
+       console.log(this.state.selectedEvent.attendee)
+        
+       }
+       componentWillUnmount(){
+           this.setState({
+               selectedEvent:null
+           })
+       }
             
         joinHandler=()=>{
             if(!this.props.loginStatus){
@@ -29,7 +43,7 @@ export class eventHeader extends Component {
                 })
             }
             if(this.props.loginStatus){
-                this.props.onJoinClick(this.eventIdSelected,this.props.userId);
+                this.props.onJoinClick(this.props.match.params.id,this.props.userId);
                 this.setState({
                     loginProcess:true
                 })        
@@ -38,47 +52,52 @@ export class eventHeader extends Component {
 
         cancelHandler=()=>{
            
-                this.props.onCancelClick(this.eventIdSelected,this.props.userId)
-                
+                this.props.onCancelClick(this.props.match.params.id,this.props.userId)
+                this.setState({
+                    cancelProcess:true
+                })
         }
 
-        componentDidUpdate(){
-            console.log('updated')
-            console.log(this.selectedEvent.attendee.includes(this.props.userId))
-        }
+        
     
     render() {
+        const {selectedEvent}=this.state;
         
         return (
-            
+            <div>
+            {selectedEvent ?
             <div className='event-header'>
                 <div className="event-header__cover">
                     <div className="event-header__cover-img"></div>
-                    <div className="event-header__cover-title">{this.selectedEvent.title}</div>
-                    <div className="event-header__cover-date">{this.selectedEvent.date}</div>
-                    <div className="event-header__cover-host"><em >Hosted by </em> {this.selectedEvent.hostName}</div>
+                    <div className="event-header__cover-title">{selectedEvent.title}</div>
+                    <div className="event-header__cover-date">{selectedEvent.date}</div>
+                    <div className="event-header__cover-host"><em >Hosted by </em> {selectedEvent.hostName}</div>
                 </div>
                 
                 {this.props.loginStatus 
-                && (this.selectedEvent.hostName===this.props.displayName)
+                && (selectedEvent.hostName===this.props.displayName)
                 && 
                 <div className="event-header__button">Update</div>}
 
                 {
-                !((this.props.loginStatus) && ( this.selectedEvent.attendee.includes(this.props.userId))) &&
+                !((this.props.loginStatus) && ( selectedEvent.attendee.includes(this.props.userId))) &&
 
                  
                 
                 <div id='join' onClick={this.joinHandler}className="event-header__button">Join This Event</div>}
 
                 {((this.props.loginStatus)
-                 && ( this.selectedEvent.attendee.includes(this.props.userId))) && 
+                 && ( selectedEvent.attendee.includes(this.props.userId))) && 
                  
             
                 <div id='trycancel' onClick={this.cancelHandler}className="event-header__button">Cancel to Join</div>}
 
                 {this.state.loginNeed && <Redirect to='/login'/>}
             </div>
+            :
+            <h1>Loading</h1>
+           
+            } </div> 
         )
     }
 }
@@ -95,8 +114,9 @@ const mapStateToProps=state=>{
 const mapDispatchToProps=dispatch=>{
     return{
         onJoinClick:(eventId,userId)=>{dispatch(joinEvent(eventId,userId))},
-        onCancelClick:(eventId,userId)=>{dispatch(onCancelClick(eventId,userId))}
+        onCancelClick:(eventId,userId)=>{dispatch(onCancelClick(eventId,userId))},
+        tryInitEvents:()=>{dispatch(initEvents())}
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(eventHeader);
+export default withRouter( connect(mapStateToProps,mapDispatchToProps)(eventHeader));
