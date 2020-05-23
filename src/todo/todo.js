@@ -9,3 +9,4 @@
 //mobilde create event button i aktif degil
 // eventleri search edecek bir component yaz
 //people page 
+// react router animation options var mi arastir

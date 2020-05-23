@@ -76,13 +76,14 @@ export const errorMsgClose=()=>{
     }
 }
 
-export const signupUserSave=(userId,email,displayName,joinDate)=>{
+export const signupUserSave=(userId,email,displayName,joinDate,gender,birthday)=>{
     return dispatch=>{
         firebase.firestore().collection('user').doc(userId).set({
             displayName:displayName,
             joinDate:joinDate,
             email:email,
-            
+            gender:gender,
+            birthday:birthday
         }).then(
             dispatch(()=>{
                 return{
@@ -104,9 +105,11 @@ export const onSignupClick=(email,password,displayName)=>{
                     const userId=res.user.uid;
                     const email=res.user.email;
                     const joinDate=new Date().toDateString();
-                    dispatch(signupSuccess(userId,email,displayName,joinDate))
-                    dispatch(signupUserSave(userId,email,displayName,joinDate))
-                    console.log('onSignUpClick')
+                    const gender=null;
+                    const birthday='';
+                    dispatch(signupSuccess(userId,email,displayName,joinDate,gender,birthday))
+                    dispatch(signupUserSave(userId,email,displayName,joinDate,gender,birthday))
+                    
                 }
             }
             

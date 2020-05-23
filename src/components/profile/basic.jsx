@@ -6,7 +6,7 @@ export class basic extends Component{
     state={
         name:'',
         gender:null,
-        birthday:'01/01/2000'
+        birthday:''
     }
 
     componentDidMount(){
