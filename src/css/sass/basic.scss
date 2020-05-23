@@ -1,0 +1,95 @@
+@import './mixins.scss';
+@import './variables.scss';
+
+
+.basic{
+
+    width:90%;
+    padding: 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    & h2{
+        color: $blue-dark;
+        letter-spacing: 2px;
+    }
+
+    @include respond(middle){
+        width:60%;
+    }
+
+    &__displayname{
+       
+        width: 100%;
+        height: 5rem;
+        margin:1rem;
+        & > input{
+            width: 80%;
+            padding: 1rem ;
+            border-radius: 5px;
+            border: 1px solid $blue-dark;
+            color:$blue-dark;
+        }
+        & > label{
+            font-size: 1.5rem;
+            color:$blue-dark;
+        }
+    }
+
+    &__gender{
+        width: 100%;
+        height: 5rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: baseline;
+        font-size: 1.5rem;
+        color: $blue-dark;
+        margin: 1rem;
+    }
+
+    &__birthday{
+
+        width: 100%;
+        height: 5rem;
+        color: $blue-dark;
+        font-size: 1.5rem;
+        margin: 1rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: baseline;
+
+        &-input{
+            width: 70%;
+            height: 100%;
+            color: $blue-dark;
+            border-radius: 5px;
+            border: none;
+            border: 1px solid $blue-dark;
+            text-align: center;
+            padding: 0.5rem 1rem;
+        }
+    }
+
+    &__button{
+        padding: 1rem 3rem;
+        border-radius: 10px;
+        border: none;
+        border: 1px solid $yellow;
+        color: $blue-dark;
+        letter-spacing: 2px;
+        &:hover{
+            background-color: $blue-dark;
+            color:#eee;
+            
+        }
+        &:active{
+            transform: translateY(2px);
+        }
+    }
+}

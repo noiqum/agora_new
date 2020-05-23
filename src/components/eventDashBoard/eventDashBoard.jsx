@@ -25,7 +25,7 @@ export class eventDashBoard extends Component {
                       key={event.id}
                                 to={{pathname:`/event-detail/${event.id}`,
                                      hash:`#${event.id}`,query:{attendeeArr:event.attendee}}}
-                        style={this.style}>
+                        style={{all:'inherit',cursor:'pointer'}}>
                             <EventItem key={event.id}event={event}></EventItem>
                             </Link>
                  }

@@ -15,7 +15,7 @@ export class eventAttendee extends Component {
         
 
     render() {
-        console.log(this.attendeesOfSelectedEvent)
+        
         return (
             <div className='event-attendee__container'>
                 <h2>Who is going to this event..</h2>

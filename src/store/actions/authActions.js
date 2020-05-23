@@ -24,31 +24,21 @@ export const loginFailed=(error)=>{
     }
 }
 export const loginButtonClick=(email,password)=>{
-    return dispatch => {
-        firebase.auth().signInWithEmailAndPassword(email,password)
-        .then(res=>{
-            if(res.user.uid !== ' '){
-                
-                    const user={
-                        
-                        email:res.user.email,
-                        userId:res.user.uid,
-                        people:res.user.people,
-                        events:res.user.events
-                      }  
-                      firebase.firestore().collection('user').doc(user.userId).get().then(
-                          res=>{
-                              return user.displayName=res.data().displayName;
-                          }
-                      )
-                      
-                      dispatch(loginSuccess(user))
-                }
-      
-            }
-    
-    )
-        .catch(err=>dispatch(loginFailed(err.message)))
+    return async dispatch => {
+       try {
+           let user={}
+           await firebase.auth().signInWithEmailAndPassword(email,password).then(
+                res=>{return user={email:res.user.email,id:res.user.uid}}
+           )
+           await firebase.firestore().collection('user').doc(user.id).get().then(
+               res=>{return user={...user,displayName:res.data().displayName}}
+           )
+           dispatch(loginSuccess(user))
+       } 
+       
+       catch (error) {
+           return dispatch(loginFailed(error.message));
+       }
 
     }
 }

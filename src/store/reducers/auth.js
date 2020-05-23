@@ -73,6 +73,16 @@ const authReducer =(state=initialstate,action)=>{
                 signupError:null,
                 error:null
             }
+        case '  UPDATE_DISPLAYNAME':
+            return {
+                ...state,
+                user:{
+                    ...state.user,
+                    displayName:action.newName
+                }
+                
+            }
+
         default:
             return state;
     }

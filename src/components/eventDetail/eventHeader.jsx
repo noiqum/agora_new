@@ -27,7 +27,7 @@ export class eventHeader extends Component {
        }
 
        componentDidUpdate(){
-       console.log(this.state.selectedEvent.attendee)
+       
         
        }
        componentWillUnmount(){
@@ -106,7 +106,7 @@ const mapStateToProps=state=>{
     return{
         events:state.event.events,
         loginStatus:state.auth.login,
-        userId:state.auth.user.userId,
+        userId:state.auth.user.id,
         displayName:state.auth.user.displayName,
         
     }

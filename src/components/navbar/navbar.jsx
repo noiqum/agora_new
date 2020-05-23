@@ -4,14 +4,14 @@ import gsap from 'gsap';
 import {connect} from 'react-redux';
 import { loginModal , logout } from '../../store/actions/authActions';
 import {Link} from 'react-router-dom';
-import firebase from 'firebase/app';
+
 
 
 const linkStyle ={
     textDecoration:'none'
 };
 
-let screenwidth =window.innerWidth;
+// let screenwidth =window.innerWidth;
 
 export class navbar extends Component {
 
@@ -21,22 +21,11 @@ export class navbar extends Component {
             burgerClicked:false,
             login:this.props.loginState,
             signup:this.props.signupState,
-            currentUser:null
+            currentUser:null,
+            displayname:null
         }
     }
 
-    unSubcribeFromAuth=null;
-    componentDidMount(){
-        this.unSubcribeFromAuth=firebase.auth().onAuthStateChanged(user=>{
-            this.setState({
-                currentUser:user
-            })
-        })
-    }
-    componentWillUnmount(){
-        
-    }
-    
 
     handleBurger=()=>{
         if(this.state.burgerClicked===false){
@@ -62,18 +51,16 @@ export class navbar extends Component {
     handleLogin=()=>{
         this.props.onLoginClick();
         this.setState({login:this.props.loginState});
-        if(screenwidth < 600 ){
-            this.handleBurger();
-        }
-        }
+        this.handleBar();
+    }
+
     handleLogout=()=>{
         this.props.onLogoutClick();
-        if(screenwidth < 600 ){
-            this.handleBurger();
-        }
-        
+        this.handleBar();
     }
-    handleSignup=()=>{
+   
+    handleBar=()=>{
+        let screenwidth =window.innerWidth;
         if(screenwidth <600){
             this.handleBurger();
         }
@@ -87,11 +74,12 @@ export class navbar extends Component {
             <div className="navbar__burger-3" onClick={this.handleBurger}></div>
             <Navlink 
              loginClicked={this.handleLogin} 
-             signupClicked ={this.handleSignup} 
+             signupClicked ={this.handleBar} 
              login={this.props.loginState} 
              signup={this.state.signup}
              logoutClicked={this.handleLogout}
-             username={this.props.username}
+             username={this.props.name}
+             onDefaultClick={this.handleBar}
              />
             
         </div>
@@ -103,7 +91,7 @@ const mapStateToProps=(state)=>{
    return  {
        loginState:state.auth.login,
        signupState:state.auth.signup,
-       username:state.auth.user.displayName
+       name:state.auth.user.displayName
     };
 }
 const mapDispatchToProps=dispatch=>{
