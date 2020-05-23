@@ -4,6 +4,13 @@
 
 .profile{
 
+    @media only screen and (min-width:800px) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
 
     &__header{
 
@@ -55,7 +62,19 @@
         line-height: 4px;
 
         @media only screen and (min-width:800px) {
-            display: none;
+            display:flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 20vw;
+            height:30rem;
+            order: 2;
+            border: 1px solid $blue-dark;
+            margin-top: 5rem;
+            border-radius: 5px;
+        }
+        @media only screen and (min-width:800px) and (max-width:1000px) {
+            width: 25vw;
         }
         @media only screen and (max-width:550px) {
             justify-content: space-around;
@@ -83,12 +102,40 @@
                 } 
             }
             
-           
+           @media only screen and (min-width:800px){
+               display: flex;
+               flex-direction: row;
+               flex-wrap: nowrap;
+               justify-content: space-between;
+               align-items: center;
+               align-self: stretch;
+
+               &:hover{
+                   background-color: $blue-dark;
+                   color:$yellow;
+               }
+               &:hover svg{
+                   fill: $yellow;
+               }
+           }
 
         }
     }
 }
 
-.profile__header-checkbox:hover .profile__links{
-    color: pink;
+.image-icon,
+.profile-icon,
+.contact-icon,
+.account-icon,
+.about-icon,
+.basic-icon{
+    display: none;
+    @media only screen and (min-width:800px){
+        display: inline-block;
+        fill: $blue-dark;
+
+        &:hover{
+            fill:$yellow;
+        }
+    }
 }

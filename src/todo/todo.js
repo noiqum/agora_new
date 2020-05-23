@@ -8,3 +8,4 @@
 //fix svg console warnings
 //mobilde create event button i aktif degil
 // eventleri search edecek bir component yaz
+//people page 

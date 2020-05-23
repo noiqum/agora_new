@@ -7,6 +7,11 @@ import Contact from './contact';
 import About from './about';
 import Account from './account';
 import {ReactComponent as Cog} from './svg/cog.svg'
+import {ReactComponent as Image} from './svg/image.svg';
+import {ReactComponent as Profile} from './svg/profile.svg'
+import {ReactComponent as BasicIcon} from './svg/basic.svg'
+import {ReactComponent as AccountIcon} from './svg/account.svg'
+import {ReactComponent as ContactIcon} from './svg/contact.svg'
 
 
 
@@ -23,11 +28,11 @@ const profile=({currentUser})=> {
                 </div>
             </div>
             <div className="profile__links">
-            <Link to={{pathname:`/profile/:${id}/basic`}}>basic</Link>
-            <Link to={{pathname:`/profile/:${id}/photo`}}>photo</Link>
-            <Link to={{pathname:`/profile/:${id}/about`}}>About Me</Link>
-            <Link to={{pathname:`/profile/:${id}/contact`}}>Contact</Link>
-            <Link to={{pathname:`/profile/:${id}/account`}}>Account</Link>
+            <Link to={{pathname:`/profile/:${id}/basic`}}><BasicIcon/>basic</Link>
+            <Link to={{pathname:`/profile/:${id}/photo`}}><Image/>photo</Link>
+            <Link to={{pathname:`/profile/:${id}/about`}}><Profile/>About Me</Link>
+            <Link to={{pathname:`/profile/:${id}/contact`}}><ContactIcon/>Contact</Link>
+            <Link to={{pathname:`/profile/:${id}/account`}}><AccountIcon/>Account</Link>
             </div>
             
             <Switch>
