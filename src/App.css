@@ -1002,9 +1002,11 @@
         justify-content: space-between;
         align-items: center;
         align-self: stretch; }
-        .profile__links a:hover {
+        .profile__links a:hover, .profile__links a:focus {
           background-color: #05668d;
           color: #f0f3bd; }
+          .profile__links a:hover svg, .profile__links a:focus svg {
+            fill: #f0f3bd; }
         .profile__links a:hover svg {
           fill: #f0f3bd; } }
 
@@ -1107,6 +1109,148 @@
       color: #eee; }
     .basic__button:active {
       transform: translateY(2px); }
+
+.photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+  padding: 2rem; }
+  @media screen and (min-width: 800px) {
+    .photo {
+      padding: 3rem;
+      width: 80%;
+      flex-direction: row;
+      flex-wrap: wrap; }
+      .photo > div {
+        margin: 2rem; } }
+  .photo h2 {
+    color: #05668d;
+    border-bottom: 1px solid #05668d;
+    padding: 1rem 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px; }
+    @media screen and (min-width: 600px) {
+      .photo h2 {
+        border: none; } }
+  .photo__part {
+    color: #05668d; }
+    .photo__part-1 {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      color: inherit; }
+      .photo__part-1 h3 {
+        color: #05668d;
+        height: 5rem;
+        width: 7rem; }
+      .photo__part-1 section {
+        border: 1px dotted #05668d;
+        width: 15rem;
+        height: 15rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center; }
+        .photo__part-1 section svg {
+          fill: #05668d; }
+    .photo__part-2 {
+      width: 100%;
+      height: 20rem;
+      flex: 0 0 20rem; }
+      .photo__part-2 h3 {
+        color: #05668d;
+        height: 5rem;
+        width: 7rem; }
+    .photo__part-3 {
+      flex: 0 0 20rem;
+      height: 20rem; }
+      .photo__part-3 h3 {
+        color: #05668d;
+        height: 5rem;
+        width: 7rem; }
+      .photo__part-3 img {
+        min-width: 15rem;
+        min-height: 15rem;
+        max-width: 15rem;
+        max-height: 15rem; }
+      .photo__part-3__upload {
+        width: 15rem;
+        height: 3rem;
+        background-color: #00a896;
+        color: #f0f3bd;
+        font-size: 1.6rem;
+        text-align: center;
+        padding: 0.5rem;
+        letter-spacing: 2px;
+        border-radius: 0px 0px 5px 5px;
+        margin-top: -3px;
+        cursor: pointer; }
+        .photo__part-3__upload:hover {
+          background-color: gray;
+          color: white; }
+        .photo__part-3__upload:active {
+          transform: translateY(2px); }
+    .photo__part-4 {
+      color: #05668d; }
+      @media screen and (min-width: 600px) {
+        .photo__part-4 {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center; } }
+
+.photoItem {
+  border: 1px solid #05668d;
+  border-radius: 5px;
+  width: 8rem;
+  height: 12rem;
+  overflow: hidden;
+  margin: 1rem; }
+  @media screen and (min-width: 600px) {
+    .photoItem {
+      height: 14rem;
+      width: 10rem;
+      margin: 2rem; } }
+  .photoItem__img {
+    width: 100%;
+    height: 80%; }
+  .photoItem__buttons {
+    width: 100%;
+    height: 4rem;
+    overflow: hidden; }
+    .photoItem__buttons button {
+      border: none;
+      margin: 0;
+      padding: 0;
+      width: 50%;
+      height: 90%;
+      padding: 0.5rem 0;
+      cursor: pointer;
+      color: red; }
+      .photoItem__buttons button:first-child {
+        border-right: 1px solid #05668d;
+        color: #05668d; }
+        .photoItem__buttons button:first-child:hover {
+          background-color: #05668d;
+          color: #f0f3bd; }
+      .photoItem__buttons button:hover {
+        background-color: grey; }
+    .photoItem__buttons span {
+      width: 100%;
+      height: 100%;
+      background-color: #00a896;
+      color: #f0f3bd;
+      display: inline-block;
+      font-size: 1.5rem;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      letter-spacing: 2px; }
 
 * {
   margin: 0;

@@ -110,13 +110,19 @@
                align-items: center;
                align-self: stretch;
 
-               &:hover{
+               &:hover,
+               &:focus {
                    background-color: $blue-dark;
                    color:$yellow;
+                   & svg{
+                       fill:$yellow;
+                   }
                }
                &:hover svg{
                    fill: $yellow;
                }
+
+               
            }
 
         }

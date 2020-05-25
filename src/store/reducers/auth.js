@@ -1,10 +1,12 @@
 const initialstate={
     user:{
-        uid:'',
+        id:'',
         displayName:'',
         email:'',
         people:[],
-        events:[]
+        events:[],
+        photos:[],
+        profilePhoto:''
     },
     login:false,
     signup:false,
@@ -22,7 +24,13 @@ const authReducer =(state=initialstate,action)=>{
           case 'LOGIN_SUCCESS':
             return{
                 ...state,
-                user:action.user,
+                user:{
+                    ...state.user,
+                    displayName:action.user.displayName,
+                    email:action.user.email,
+                    id:action.user.id,
+                    photos:action.user.photos
+                },
                 login:true,
                 error:null
                 }
@@ -82,7 +90,14 @@ const authReducer =(state=initialstate,action)=>{
                 }
                 
             }
-
+        case 'UPDATE_USER_PHOTO' :
+            return {
+                ...state,
+                user:{
+                    ...state.user,
+                    photos:state.user.photos.concat(action.photoUrl)
+                }
+            }
         default:
             return state;
     }

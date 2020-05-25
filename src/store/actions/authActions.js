@@ -31,7 +31,12 @@ export const loginButtonClick=(email,password)=>{
                 res=>{return user={email:res.user.email,id:res.user.uid}}
            )
            await firebase.firestore().collection('user').doc(user.id).get().then(
-               res=>{return user={...user,displayName:res.data().displayName}}
+               res=>{
+                  return (res.data().photos !== undefined) ?
+                    user={...user,displayName:res.data().displayName,photos:res.data().photos}
+                    :   
+                    user={...user,displayName:res.data().displayName}
+            }
            )
            dispatch(loginSuccess(user))
        } 
