@@ -1196,13 +1196,29 @@
         .photo__part-3__upload:active {
           transform: translateY(2px); }
     .photo__part-4 {
-      color: #05668d; }
+      color: #05668d;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative; }
+      .photo__part-4 h3 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        text-transform: uppercase;
+        border-bottom: 1px solid #05668d;
+        letter-spacing: 2px;
+        padding-bottom: 2px; }
       @media screen and (min-width: 600px) {
         .photo__part-4 {
           display: flex;
           flex-direction: row;
           justify-content: flex-start;
-          align-items: center; } }
+          align-items: flex-start;
+          align-content: flex-start; } }
 
 .photoItem {
   border: 1px solid #05668d;
@@ -1210,7 +1226,8 @@
   width: 8rem;
   height: 12rem;
   overflow: hidden;
-  margin: 1rem; }
+  margin: 1rem;
+  margin-top: 3rem; }
   @media screen and (min-width: 600px) {
     .photoItem {
       height: 14rem;

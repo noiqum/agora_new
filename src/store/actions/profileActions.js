@@ -113,3 +113,42 @@ export const uploadPhoto=(file,userId,fileName)=>{
     }
 
 }
+export const mainPhotoUpdate=(photo)=>{
+    return{
+        type:'MAIN_PHOTO_UPDATE',
+        photo:photo
+    }
+}
+
+export const mainPhotoPick=(photo,userId)=>{
+    
+    return  async dispatch=>{
+        try {
+            let userDetail= await firestore.doc(`user/${userId}`).get().then(
+                doc=>{
+                   return doc.data()
+                }
+            )
+            let userMainPhoto = userDetail.mainPhoto;
+            if(userMainPhoto === undefined){
+               await firestore.doc(`user/${userId}`).set({
+                    mainPhoto:photo
+                },{merge:true}).then(
+                    dispatch(mainPhotoUpdate(photo))
+                )
+            }
+            if(userMainPhoto !== undefined){
+               await firestore.doc(`user/${userId}`).update(
+                    {mainPhoto:photo}
+                ).then(
+                    dispatch(mainPhotoUpdate(photo))
+                )
+            }
+
+            
+        } catch (error) {
+            console.error(error)
+        }
+
+    }
+}

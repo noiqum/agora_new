@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 import {ReactComponent as Upload} from './svg/upload.svg';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css'; 
-import {uploadPhoto,updateUserPhoto} from '../../store/actions/profileActions'
+import {uploadPhoto,mainPhotoPick} from '../../store/actions/profileActions'
 
 export class photo extends Component {
     state={
@@ -49,9 +49,16 @@ export class photo extends Component {
         // this.props.onDeneme(this.state.photoUrl);
     }
 
+    mainHandle=(photo)=>{
+        this.props.onMain(photo,this.props.id)
+    }
+    deleteHandle=(photo)=>{
+        console.log(photo)
+    }
+
     render() {
-        const{mainPhoto}=this.state;
-        const {photoUrl}=this.props;
+        
+        const {photoUrl,profilePhoto}=this.props;
         return (
             <div className='photo'>
             <h2>Photos</h2>
@@ -102,7 +109,12 @@ export class photo extends Component {
                 <div className="photo__part-4">
                     <h3>My Photos</h3>
                 {photoUrl && photoUrl.map((photo,index)=>{
-                    return <PhotoItem key={index} photo={photo} mainPhoto={mainPhoto} />
+                    return <PhotoItem 
+                    key={index} photo={photo}
+                     mainPhoto={profilePhoto}
+                     onMainClick={()=>{this.mainHandle(photo)}}
+                     onDeleteClick={()=>{this.deleteHandle(photo)}}
+                     />
                 })}
                 </div>
         </div>
@@ -112,14 +124,15 @@ export class photo extends Component {
 
 const mapStateToProps = (state) => ({
     id:state.auth.user.id,
-    photoUrl:state.auth.user.photos
+    photoUrl:state.auth.user.photos,
+    profilePhoto:state.auth.user.profilePhoto
 })
 
 const mapDispatchToProps =dispatch=> {
     
        return{
         onUploadImage:(file,userId,fileName)=>{dispatch(uploadPhoto(file,userId,fileName))},
-        onDeneme:(url)=>{dispatch(updateUserPhoto(url))}
+        onMain:(pic,id)=>{dispatch(mainPhotoPick(pic,id))}
        }
     
 }

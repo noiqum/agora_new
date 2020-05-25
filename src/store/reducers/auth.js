@@ -98,6 +98,14 @@ const authReducer =(state=initialstate,action)=>{
                     photos:state.user.photos.concat(action.photoUrl)
                 }
             }
+        case 'MAIN_PHOTO_UPDATE':
+            return {
+                ...state,
+                user:{
+                    ...state.user,
+                    profilePhoto:action.photo
+                }
+            }
         default:
             return state;
     }

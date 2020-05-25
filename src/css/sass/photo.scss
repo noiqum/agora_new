@@ -114,12 +114,30 @@
 
         &-4{
             color: $blue-dark;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+
+            & h3{
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                text-transform: uppercase;
+                border-bottom: 1px solid $blue-dark;
+                letter-spacing: 2px;
+                padding-bottom: 2px;
+            }
+
             @include respond(middle){
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
-                align-items: center;
-
+                align-items: flex-start;
+                align-content: flex-start;
 
             }
         }

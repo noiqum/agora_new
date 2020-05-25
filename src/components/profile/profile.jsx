@@ -36,6 +36,7 @@ const profile=({currentUser})=> {
             </div>
             
             <Switch>
+                <Route exact path='/profile/:id' component={Basic}></Route>
                 <Route path='/profile/:id/basic' component={Basic}></Route>
                 <Route path='/profile/:id/photo' component={Photo}></Route>
                 <Route path='/profile/:id/about' component={About}></Route>
