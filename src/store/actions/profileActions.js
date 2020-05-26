@@ -58,10 +58,17 @@ export const updateProfile=(basicData,id)=>{
 
 }
 
-export const updateUserPhoto=(photoUrl)=>{
+export const updateUserPhoto=(photoObj)=>{
     return{
         type:'UPDATE_USER_PHOTO',
-        photoUrl:photoUrl
+        photoObj:photoObj
+    }
+}
+
+export const deleteUserPhoto=(photo)=>{
+    return{
+        type:'DELETE_USER_PHOTO',
+        photo:photo
     }
 }
 
@@ -92,14 +99,14 @@ export const uploadPhoto=(file,userId,fileName)=>{
             let userPhotos= userData.photos;
              if(userPhotos === undefined){
                 firestore.collection('user').doc(userId).set({
-                    photos:{downloadUrl}
-                },{merge:true}).then(dispatch(updateUserPhoto(downloadUrl)))
+                    photos:{downloadUrl:downloadUrl,fileName:fileName}
+                },{merge:true}).then(dispatch(updateUserPhoto({downloadUrl,fileName})))
                 
             }
             if(userPhotos !== undefined){
                 firestore.doc(`user/${userId}`).update(
-                    {photos:firebase.firestore.FieldValue.arrayUnion(downloadUrl)}
-                ).then(dispatch(updateUserPhoto(downloadUrl)))
+                    {photos:firebase.firestore.FieldValue.arrayUnion({downloadUrl:downloadUrl,fileName:fileName})}
+                ).then(dispatch(updateUserPhoto({downloadUrl,fileName})))
                 
 
             }
@@ -150,5 +157,31 @@ export const mainPhotoPick=(photo,userId)=>{
             console.error(error)
         }
 
+    }
+}
+
+export const deletePhoto=(photo,userId,fileName)=>{
+    return async dispatch =>{
+
+        const path=`${userId}/user_images/`;
+        const userImageRef=storageRef.child(path+fileName);
+        try {
+             await userImageRef.delete().then(
+                 ()=>{
+                     toastr.success('success','photo deleted')
+                 }
+             ).catch(
+                 (err)=>console.log(err)
+             )
+            await firestore.doc(`user/${userId}`).update(
+                {photos:firebase.firestore.FieldValue.arrayRemove(photo)}
+            ).then(dispatch(deleteUserPhoto(photo)))
+            .catch(err=>{
+                console.log(err)
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

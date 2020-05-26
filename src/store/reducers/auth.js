@@ -95,7 +95,7 @@ const authReducer =(state=initialstate,action)=>{
                 ...state,
                 user:{
                     ...state.user,
-                    photos:state.user.photos.concat(action.photoUrl)
+                    photos:state.user.photos.concat(action.photoObj)
                 }
             }
         case 'MAIN_PHOTO_UPDATE':
@@ -104,6 +104,16 @@ const authReducer =(state=initialstate,action)=>{
                 user:{
                     ...state.user,
                     profilePhoto:action.photo
+                }
+            }
+        case 'DELETE_USER_PHOTO':
+            return{
+                ...state,
+                user:{
+                    ...state.user,
+                    photos:state.user.photos.filter(elm=>{
+                        return elm !== action.photo
+                    })
                 }
             }
         default:

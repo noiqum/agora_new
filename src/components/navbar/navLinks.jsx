@@ -39,7 +39,7 @@ import {connect} from 'react-redux'
                     to={{pathname:`/profile/:${id}`}}
                     onClick={onDefaultClick}>
                     <li className="navbar__nav__list__link">{
-                    profilePhoto && <img  alt='profile_pic'src={profilePhoto}></img>
+                    profilePhoto && <img  alt='profile_pic'src={`${profilePhoto.downloadUrl}`}></img>
                     }</li></Link>}
 
                 </ul>

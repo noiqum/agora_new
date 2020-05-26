@@ -3,9 +3,10 @@ import React from 'react'
 function photoItem({photo,mainPhoto,onDeleteClick,onMainClick}) {
     return (
         <div className='photoItem'>
-            <img className='photoItem__img' src={photo} alt="user_photo"/>
+            <img className='photoItem__img' src={`${photo.downloadUrl}`}alt="user_photo"/>
+    
             <div className="photoItem__buttons">
-                {(photo === mainPhoto) ?
+                {(photo.downloadUrl === mainPhoto.downloadUrl) ?
                 <span className="photoItem__buttons-span">Profile</span>
                 :
                 (<div>

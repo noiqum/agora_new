@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 import {ReactComponent as Upload} from './svg/upload.svg';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css'; 
-import {uploadPhoto,mainPhotoPick} from '../../store/actions/profileActions'
+import {uploadPhoto,mainPhotoPick,deletePhoto} from '../../store/actions/profileActions'
 
 export class photo extends Component {
     state={
@@ -46,19 +46,19 @@ export class photo extends Component {
     uploadImage=()=>{
        
         this.props.onUploadImage(this.state.image,this.props.id,this.state.fileName);
-        // this.props.onDeneme(this.state.photoUrl);
+        
     }
 
     mainHandle=(photo)=>{
         this.props.onMain(photo,this.props.id)
     }
     deleteHandle=(photo)=>{
-        console.log(photo)
+        this.props.onDelete(photo,this.props.id,photo.fileName)
     }
 
     render() {
         
-        const {photoUrl,profilePhoto}=this.props;
+        const {photos,profilePhoto}=this.props;
         return (
             <div className='photo'>
             <h2>Photos</h2>
@@ -108,8 +108,9 @@ export class photo extends Component {
             </div>
                 <div className="photo__part-4">
                     <h3>My Photos</h3>
-                {photoUrl && photoUrl.map((photo,index)=>{
+                {photos && photos.map((photo,index)=>{
                     return <PhotoItem 
+                    name={photo.fileName}
                     key={index} photo={photo}
                      mainPhoto={profilePhoto}
                      onMainClick={()=>{this.mainHandle(photo)}}
@@ -124,7 +125,7 @@ export class photo extends Component {
 
 const mapStateToProps = (state) => ({
     id:state.auth.user.id,
-    photoUrl:state.auth.user.photos,
+    photos:state.auth.user.photos,
     profilePhoto:state.auth.user.profilePhoto
 })
 
@@ -132,7 +133,8 @@ const mapDispatchToProps =dispatch=> {
     
        return{
         onUploadImage:(file,userId,fileName)=>{dispatch(uploadPhoto(file,userId,fileName))},
-        onMain:(pic,id)=>{dispatch(mainPhotoPick(pic,id))}
+        onMain:(pic,id)=>{dispatch(mainPhotoPick(pic,id))},
+        onDelete:(photo,id,fileName)=>{dispatch(deletePhoto(photo,id,fileName))}
        }
     
 }
