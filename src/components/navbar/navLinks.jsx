@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 
- function navLinks({username,signup,login,loginClicked,signupClicked,logoutClicked,id,onDefaultClick}) {
+ function navLinks({username,signup,login,loginClicked,signupClicked,logoutClicked,id,onDefaultClick,profilePhoto}) {
 
     const linkStyle ={
         
@@ -32,7 +32,16 @@ import {connect} from 'react-redux'
                     {login && <Link style={linkStyle} 
                     to={{pathname:`/profile/:${id}`}}
                     onClick={onDefaultClick}>
-                    <li className="navbar__nav__list__link">{username}</li></Link>}
+                    <li className="navbar__nav__list__link">
+                    {username}</li></Link>}
+
+                    {login && <Link style={linkStyle} 
+                    to={{pathname:`/profile/:${id}`}}
+                    onClick={onDefaultClick}>
+                    <li className="navbar__nav__list__link">{
+                    profilePhoto && <img  alt='profile_pic'src={profilePhoto}></img>
+                    }</li></Link>}
+
                 </ul>
             </nav>
         </div>
@@ -42,7 +51,8 @@ import {connect} from 'react-redux'
 
 const mapStateToProps=state=>{
     return{
-        id:state.auth.user.id
+        id:state.auth.user.id,
+        profilePhoto:state.auth.user.profilePhoto
     }
 }
 
