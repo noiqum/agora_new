@@ -1359,6 +1359,87 @@
     .about__button:active {
       transform: translateY(2px); }
 
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start; }
+  .contact h3 {
+    font-size: 2rem;
+    color: #05668d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 1rem; }
+    @media screen and (min-width: 600px) {
+      .contact h3 {
+        margin: 3rem; } }
+  .contact svg {
+    fill: #05668d;
+    width: 3rem;
+    height: 3rem;
+    margin: 1rem; }
+  .contact__link {
+    width: 100%; }
+  .contact__button {
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    border: none;
+    border: 1px solid #f0f3bd;
+    color: #05668d;
+    letter-spacing: 2px;
+    align-self: center; }
+    .contact__button:hover {
+      background-color: #05668d;
+      color: #eee; }
+    .contact__button:active {
+      transform: translateY(2px); }
+  .contact__collapse {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 2rem; }
+    @media screen and (min-width: 600px) {
+      .contact__collapse {
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap; } }
+    .contact__collapse-li {
+      cursor: pointer;
+      list-style: none;
+      font-size: 1.6rem;
+      background-color: rgba(128, 128, 128, 0.616);
+      padding: 0.5rem 2rem;
+      width: 20rem;
+      transition: all 0.5s ease-in-out;
+      text-align: center;
+      margin: 0.5rem;
+      border-radius: 5px;
+      color: #05668d;
+      letter-spacing: 2px;
+      text-transform: capitalize; }
+
+.contact-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin: 1rem; }
+  .contact-item__container {
+    width: 100%; }
+  .contact-item__input {
+    width: 80%;
+    height: 4rem;
+    border-radius: 2px;
+    border: none;
+    border-bottom: 1px solid #00a896;
+    color: #05668d; }
+  .contact-item__bin {
+    cursor: pointer; }
+
+.link-icon {
+  fill: gray; }
+
 * {
   margin: 0;
   padding: 0;

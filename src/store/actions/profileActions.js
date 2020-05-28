@@ -267,3 +267,42 @@ export const updateAboutMeClick =(bio,job,interest,id)=>{
         }
     }
 }
+
+export const deleteContact=(elm)=>{
+    return{
+        type:'DELETE_CONTACT',
+        elm:elm
+    }
+}
+
+
+export const deleteContactClick=(elm,id)=>{
+
+    return async dispatch=>{
+        await firestore.doc(`user/${id}`).update({
+            contact:firebase.firestore.FieldValue.arrayRemove(elm)
+        }).then(
+            dispatch(deleteContact(elm))
+        )
+    }
+
+}
+
+export const addContact=(elm)=>{
+    return{
+        type:'ADD_CONTACT',
+        elm:elm
+    }
+}
+
+export const addContactClick=(elm,id)=>{
+    return async dispatch=>{
+        await firestore.doc(`user/${id}`).update({
+            contact:firebase.firestore.FieldValue.arrayUnion(elm)
+        }).then(
+            dispatch(addContact(elm))
+        ).catch(err=>{
+            console.warn(err)
+        })
+    }
+}

@@ -10,7 +10,8 @@ const initialstate={
         birthday:'',
         bio:'',
         job:'',
-        interest:[]
+        interest:[],
+        contact:[]
     },
     login:false,
     signup:false,
@@ -42,7 +43,8 @@ const authReducer =(state=initialstate,action)=>{
                     birthday:action.user.birthday,
                     bio:action.user.bio,
                     job:action.user.job,
-                    interest:action.user.interest
+                    interest:action.user.interest,
+                    contact:action.user.contact
                 },
                 login:true,
                 error:null,
@@ -153,6 +155,24 @@ const authReducer =(state=initialstate,action)=>{
                 user:{
                     ...state.user,
                     interest:state.user.interest.concat(action.interest)
+                }
+            }
+        case 'DELETE_CONTACT':
+            return{
+                ...state,
+                user:{
+                    ...state.user,
+                    contact:state.user.contact.filter(elm=>{
+                        return elm !== action.elm
+                    })
+                }
+            }
+        case 'ADD_CONTACT':
+            return{
+                ...state,
+                user:{
+                    ...state.user,
+                    contact:state.user.contact.concat(action.elm)
                 }
             }
         default:

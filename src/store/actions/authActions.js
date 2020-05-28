@@ -44,7 +44,8 @@ export const loginButtonClick=(email,password)=>{
                                          profilePhoto:userInfo.mainPhoto,
                                          bio:userInfo.bio,
                                          job:userInfo.job,
-                                         interest:userInfo.interest                
+                                         interest:userInfo.interest,
+                                         contact:userInfo.contact                
                 }
             }
            )
