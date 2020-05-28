@@ -1280,6 +1280,85 @@
       padding: 0;
       letter-spacing: 2px; }
 
+.about {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem; }
+  @media screen and (min-width: 600px) {
+    .about {
+      width: 60%; } }
+  .about__title {
+    font-size: 2rem;
+    color: #05668d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 1rem; }
+    @media screen and (min-width: 600px) {
+      .about__title {
+        margin: 3rem; } }
+  .about__img {
+    display: inline-block;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%; }
+  .about__header {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    font-size: 2rem;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    color: #05668d; }
+  .about__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 80%; }
+    @media screen and (min-width: 600px) {
+      .about__main {
+        width: 100%; } }
+    .about__main label,
+    .about__main input,
+    .about__main textarea {
+      font-size: 1.6rem;
+      text-transform: capitalize;
+      margin: 1rem;
+      width: 100%;
+      color: #05668d; }
+      @media screen and (min-width: 600px) {
+        .about__main label,
+        .about__main input,
+        .about__main textarea {
+          font-size: 2rem;
+          margin: 2rem;
+          width: 100%; } }
+    .about__main input {
+      border: none;
+      border-bottom: 1px solid #05668d;
+      min-width: min-content; }
+    .about__main textarea {
+      outline: none;
+      border: none;
+      resize: none;
+      border-bottom: 1px solid #05668d; }
+  .about__button {
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    border: none;
+    color: #05668d;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin: 0 auto; }
+    .about__button:hover {
+      background-color: #05668d;
+      color: #eee; }
+    .about__button:active {
+      transform: translateY(2px); }
+
 * {
   margin: 0;
   padding: 0;

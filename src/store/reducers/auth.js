@@ -6,7 +6,11 @@ const initialstate={
         people:[],
         events:[],
         photos:[],
-        profilePhoto:''
+        profilePhoto:'',
+        birthday:'',
+        bio:'',
+        job:'',
+        interest:[]
     },
     login:false,
     signup:false,
@@ -29,16 +33,27 @@ const authReducer =(state=initialstate,action)=>{
                     displayName:action.user.displayName,
                     email:action.user.email,
                     id:action.user.id,
-                    photos:action.user.photos
+                    photos:action.user.photos,
+                    people:action.user.people,
+                    events:action.user.events,
+                    joinDate:action.user.joinDate,
+                    hostEvents:action.user.hostEvents,
+                    profilePhoto:action.user.profilePhoto,
+                    birthday:action.user.birthday,
+                    bio:action.user.bio,
+                    job:action.user.job,
+                    interest:action.user.interest
                 },
                 login:true,
-                error:null
+                error:null,
+                signupProcess:false
                 }
         case 'LOGOUT':
             return{
                 ...state,
                 login:false,
-                signup:false
+                signup:false,
+                signupProcess:false
             }
         case 'LOGIN_FAILED':
             return {
@@ -114,6 +129,30 @@ const authReducer =(state=initialstate,action)=>{
                     photos:state.user.photos.filter(elm=>{
                         return elm !== action.photo
                     })
+                }
+            }
+        case 'UPDATE_ABOUT_ME_BIO':
+            return{
+                ...state,
+                user:{
+                    ...state.user,
+                    bio:action.bio
+                }
+            }
+        case 'UPDATE_ABOUT_ME_JOB':
+            return {
+                ...state,
+                user:{
+                    ...state.user,
+                    job:action.job
+                }
+            }
+        case 'UPDATE_ABOUT_ME_INTEREST':
+            return {
+                ...state,
+                user:{
+                    ...state.user,
+                    interest:state.user.interest.concat(action.interest)
                 }
             }
         default:

@@ -10,7 +10,8 @@ export class signup extends Component {
     state={
         displayName:null,
         email:null,
-        password:null
+        password:null,
+        error:null
     }
 
     componentDidMount(){

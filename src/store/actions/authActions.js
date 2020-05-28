@@ -32,10 +32,20 @@ export const loginButtonClick=(email,password)=>{
            )
            await firebase.firestore().collection('user').doc(user.id).get().then(
                res=>{
-                  return (res.data().photos !== undefined) ?
-                    user={...user,displayName:res.data().displayName,photos:res.data().photos}
-                    :   
-                    user={...user,displayName:res.data().displayName}
+                   let userInfo=res.data()
+                  return   user={...user,displayName:userInfo.displayName,
+                                         photos:userInfo.photos,
+                                         people:userInfo.people,
+                                         events:userInfo.joinEvent,
+                                         joinDate:userInfo.joinDate,
+                                         hostEvents:userInfo.hostEvent,
+                                         birthday:userInfo.birthday,
+                                         gender:userInfo.gender,
+                                         profilePhoto:userInfo.mainPhoto,
+                                         bio:userInfo.bio,
+                                         job:userInfo.job,
+                                         interest:userInfo.interest                
+                }
             }
            )
            dispatch(loginSuccess(user))
@@ -81,14 +91,10 @@ export const errorMsgClose=()=>{
     }
 }
 
-export const signupUserSave=(userId,email,displayName,joinDate,gender,birthday)=>{
+export const signupUserSave=(userSchema)=>{
     return dispatch=>{
-        firebase.firestore().collection('user').doc(userId).set({
-            displayName:displayName,
-            joinDate:joinDate,
-            email:email,
-            gender:gender,
-            birthday:birthday
+        firebase.firestore().collection('user').doc(userSchema.id).set({
+            ...userSchema
         }).then(
             dispatch(()=>{
                 return{
@@ -112,8 +118,24 @@ export const onSignupClick=(email,password,displayName)=>{
                     const joinDate=new Date().toDateString();
                     const gender=null;
                     const birthday='';
+                    let userSchema={
+                        id:res.user.uid,
+                        email:res.user.email,
+                        joinDate:joinDate,
+                        gender:'',
+                        birthday:'',
+                        displayName:displayName,
+                        photos:[],
+                        people:[],
+                        joinEvent:[],
+                        hostEvent:[],
+                        bio:'',
+                        job:'',
+                        interest:[],
+                        mainPhoto:''          
+                    }
                     dispatch(signupSuccess(userId,email,displayName,joinDate,gender,birthday))
-                    dispatch(signupUserSave(userId,email,displayName,joinDate,gender,birthday))
+                    dispatch(signupUserSave(userSchema))
                     
                 }
             }

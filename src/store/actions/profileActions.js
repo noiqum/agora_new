@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-
+import {compareArray} from '../../config/utils'
 import { toastr } from 'react-redux-toastr';
 import {birthdayConvert} from '../../config/utils';
 
@@ -180,6 +180,88 @@ export const deletePhoto=(photo,userId,fileName)=>{
                 console.log(err)
             })
 
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const updateAboutMe=(task,info)=>{
+   switch (task) {
+       case 'bio':
+           
+        return{
+            type:'UPDATE_ABOUT_ME_BIO',
+            bio:info
+        }
+        case 'job':
+        return{
+            type:'UPDATE_ABOUT_ME_JOB',
+            job:info
+        }
+        case 'interest':
+            return{
+                type:'UPDATE_ABOUT_ME_INTEREST',
+                interest:info
+            }
+       default:
+           return{
+               type:'UPDATE_ABOUT_ME'
+           }
+   }
+}
+
+export const updateAboutMeClick =(bio,job,interest,id)=>{
+    return async dispatch=>{
+              let task,info;  
+        try {
+            let userData= firestore.doc(`user/${id}`).get().then(
+                doc=>{
+                    return doc.data()
+                }
+            );
+            
+            let dataBio= userData.bio;
+            let dataJob= userData.job;
+            let dataInterest= userData.interest;
+
+                if(dataBio !== bio){
+                    task='bio';
+                    info=bio;
+                    await firestore.doc(`user/${id}`).update({
+                        bio:bio
+                    }).then(
+                        
+                        dispatch(updateAboutMe(task,info))
+                    )
+                }
+                if(dataJob !== job){
+                    task='job';
+                    info=job;
+                    await firestore.doc(`user/${id}`).update({
+                        job:job
+                    }).then(
+                        dispatch(updateAboutMe(task,info))
+                    )
+                }
+                if(dataInterest === undefined){
+                    task='interest';
+                    info=interest;
+                    await firestore.doc(`user/${id}`).update({
+                        interest:interest
+                    })
+                }else{if(!compareArray(dataInterest,interest)){
+                    task='interest';
+                    info=interest;
+                    await firestore.doc(`user/${id}`).update(
+                        {interest:interest}
+                    ).then(
+                        dispatch(updateAboutMe(task,info))
+                    )
+                }
+        }
+                
+            
         } catch (error) {
             console.log(error)
         }
