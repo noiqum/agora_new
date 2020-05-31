@@ -33,8 +33,18 @@ export class eventForm extends Component {
 
         handleForm=(e)=>{
             e.preventDefault();
-           
-            this.props.createEvent(this.state)
+            this.props.createEvent(this.state);
+            this.setState({
+            title:'',
+            category:'',
+            date:'',
+            city:'',
+            address:'',
+            description:'',
+            hostName:'',
+            hostUserId:'',
+            attendee:[]
+            })
         }
 
         
@@ -42,6 +52,7 @@ export class eventForm extends Component {
         
 
     render() {
+        const{title,date,city,description,address}=this.state;
         return (
             
             <div className='eventform' >
@@ -50,7 +61,7 @@ export class eventForm extends Component {
                     <div className="eventform__title__div">
     
                     <label htmlFor="title" className="eventform__title-label">title</label>
-                    <input  onChange={this.handleInfo}name='title' type="text" className="eventform__title"/>
+                    <input value={title} onChange={this.handleInfo} name='title' type="text" className="eventform__title"/>
     
                     </div>
                     
@@ -68,22 +79,22 @@ export class eventForm extends Component {
                     </div>
                     <div className="eventform__date__div">
                         <label htmlFor="date" className="eventform__date-label">Date</label>
-                        <input onChange={this.handleInfo} type="date" className="eventform__date" name='date'/>
+                        <input onChange={this.handleInfo} type="date" className="eventform__date" name='date' value={date}/>
                     </div>
                     <div className="eventform__city__div">
                         <label htmlFor="city" className="eventform__address-label">City</label> 
-                        <input onChange={this.handleInfo} name='city'type="text" className="eventform__category__address"/>
+                        <input onChange={this.handleInfo} name='city'type="text" className="eventform__category__address" value={city}/>
                         
                     </div>
 
                     <div className="eventform__address__div">
                         <label htmlFor="address" className="eventform__address-label">Address</label>
-                        <input onChange={this.handleInfo} name='address'type="text" className="eventform__category__address"/>
+                        <input onChange={this.handleInfo} name='address'type="text" className="eventform__category__address" value={address}/>
                     </div>
                    
                     <div className="eventform__description__div">
                         <label htmlFor="description" className="eventform__description-label">Description</label>
-                        <input onChange={this.handleInfo} name='description' type="text" className="eventform__description"/>
+                        <input onChange={this.handleInfo} name='description' type="text" className="eventform__description" value={description}/>
                     </div>
     
                     <div className="eventform__button__div">
@@ -104,7 +115,7 @@ const mapDispatchToProps=(dispatch)=>{
 }
 const mapStateToProps=state=>{
     return{
-        userId:state.auth.user.userId,
+        userId:state.auth.user.id,
         displayName:state.auth.user.displayName
     }
 }

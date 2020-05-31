@@ -11,7 +11,7 @@
     padding: 1rem 1rem;
     @include center;
     margin-right: 2rem;
-
+    cursor: pointer;
     & p{
         font-size: 1.6rem;
         text-align: center;
@@ -25,5 +25,11 @@
         border: 1px solid white;
         display: inline-block;
         border: 5px solid $blue-dark;
+        filter: grayscale(120%);
+
+    }
+
+    &:hover img{
+        filter: none;
     }
 }

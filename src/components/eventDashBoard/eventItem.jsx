@@ -17,7 +17,7 @@ function eventItem({event}) {
     
 
     return (
-       
+        
         <div className='event'>
             <h3 className="event__title">{event.title}</h3>
             <p className="event__hostname">{event.hostName}</p>

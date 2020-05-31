@@ -9,20 +9,22 @@ firebase.initializeApp(firebaseConfig);
 
  export const createEvent=(event)=>{
     
-    return (dispatch)=>{
-        firebase.firestore().collection('events').add(event)
-        .then(docRef=>{
-            
-            
-            
-            dispatch({type:'CREATE_EVENT',event});  
+    return async (dispatch)=>{
+       const hostUser=event.hostUserId;
+       
+        await firebase.firestore().collection('events').add(event)
+        .then( docRef=>{
+               firebase.firestore().doc(`user/${hostUser}`).update({
+                   hostEvent:firebase.firestore.FieldValue.arrayUnion(docRef.id)
+               })
         })
+        .then(
+            dispatch({type:'CREATE_EVENT',event})
+        )
         .then(
             toastr.success('Success','Event Created !')
         )
-        .catch(err=>console.log(err))
-       
-        
+        .catch(err=>console.log(err))    
     }
 
  }

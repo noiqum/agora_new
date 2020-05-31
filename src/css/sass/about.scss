@@ -29,6 +29,7 @@
         width: 10rem;
         height: 10rem;
         border-radius: 50%;
+        margin-left: 1rem;
     }
 
     &__header{
@@ -37,10 +38,14 @@
         display: flex;
         justify-content: flex-start;
         align-items: baseline;
-        font-size: 2rem;
+        font-size: 1.3rem;
         text-transform: capitalize;
         letter-spacing: 2px;
         color:$blue-dark;
+
+        @include respond(middle){
+            font-size: 2rem;
+        }
     }
 
     &__main{

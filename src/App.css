@@ -914,7 +914,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-right: 2rem; }
+  margin-right: 2rem;
+  cursor: pointer; }
   .attendee p {
     font-size: 1.6rem;
     text-align: center;
@@ -924,7 +925,10 @@
     border-radius: 50%;
     border: 1px solid white;
     display: inline-block;
-    border: 5px solid #05668d; }
+    border: 5px solid #05668d;
+    filter: grayscale(120%); }
+  .attendee:hover img {
+    filter: none; }
 
 @media only screen and (min-width: 800px) {
   .profile {
@@ -1302,16 +1306,20 @@
     display: inline-block;
     width: 10rem;
     height: 10rem;
-    border-radius: 50%; }
+    border-radius: 50%;
+    margin-left: 1rem; }
   .about__header {
     width: 80%;
     display: flex;
     justify-content: flex-start;
     align-items: baseline;
-    font-size: 2rem;
+    font-size: 1.3rem;
     text-transform: capitalize;
     letter-spacing: 2px;
     color: #05668d; }
+    @media screen and (min-width: 600px) {
+      .about__header {
+        font-size: 2rem; } }
   .about__main {
     display: flex;
     flex-direction: column;
@@ -1364,6 +1372,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start; }
+  @media screen and (min-width: 600px) {
+    .contact {
+      width: 70%; } }
   .contact h3 {
     font-size: 2rem;
     color: #05668d;

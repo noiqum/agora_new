@@ -1,8 +1,8 @@
 // 1 update event
 // 2 profile page
-// 3 profile page photo upload
 
-// cancel and join button problem
+
+// cancel and join button problem (call event from db with lifecycle methods use componentdidupdate and trigger re render or try firestore listener functionality)
 //login ile database user a ait people ve events dizinlerini cek
 // mobile version needs fixing
 //fix svg console warnings
@@ -10,3 +10,8 @@
 // eventleri search edecek bir component yaz
 //people page 
 // react router animation options var mi arastir
+//event form da saat opsiyonu yok ve database e saat i eklemek gerek
+
+
+
+// google drive 178 de kaldik

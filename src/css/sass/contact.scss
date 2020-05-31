@@ -7,6 +7,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+
+    @include respond(middle){
+        width: 70%;
+    }
     & h3{
 
         font-size: 2rem;
