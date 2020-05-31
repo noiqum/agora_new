@@ -46,3 +46,17 @@ export const convertToArray =(str)=>{
     return str.split(',');
 }
 
+export const validateState=(obj)=>{
+    let values=Object.values(obj);
+    let valid=values.some(elm=>{
+       return elm === '';
+    })
+    console.log(valid)
+    if(valid){
+        return false
+    }
+    else{
+        return true
+    }
+}
+

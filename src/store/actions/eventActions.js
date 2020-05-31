@@ -177,3 +177,48 @@ export const joinEventClickFinish=()=>{
             }
         }
  }
+
+ export const passEventToReducer=(event)=>{
+     return{
+         type:'UPDATE_EVENT',
+        event:event
+     }
+ }
+
+ export const getEventDetail=(id)=>{
+     return async dispatch=>{
+         try {
+             await firebase.firestore().doc(`events/${id}`).get(
+                 
+             ).then(
+                res=>{
+                    res.data()
+                    dispatch(passEventToReducer(res.data()))
+                }
+             ).catch(err=>{
+                 console.error(err)
+             })
+             
+              
+         } catch (error) {
+             console.warn(error)
+         }
+     }
+ }
+
+ export const updateEventToDB=(id,event)=>{
+    return  async dispatch=>{
+        await firebase.firestore().doc(`events/${id}`).update(
+            event
+        ).then(
+            toastr.success('success','even updated')
+        ).then(
+            
+            dispatch(passEventToReducer(event))
+        ).catch(
+           err=>{
+               console.warn(err)
+           }
+        )
+    }
+ }

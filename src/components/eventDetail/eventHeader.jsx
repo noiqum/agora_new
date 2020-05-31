@@ -11,7 +11,8 @@ export class eventHeader extends Component {
             loginNeed:false,
             loginProcess:false,
             selectedEvent:null,
-            cancelProcess:false
+            cancelProcess:false,
+            updateDemand:false,
         }
    
         
@@ -58,7 +59,11 @@ export class eventHeader extends Component {
                 })
         }
 
-        
+        updateHandler=()=>{
+            this.setState({
+                updateDemand:true
+            })
+        }
     
     render() {
         const {selectedEvent}=this.state;
@@ -77,7 +82,7 @@ export class eventHeader extends Component {
                 {this.props.loginStatus 
                 && (selectedEvent.hostName===this.props.displayName)
                 && 
-                <div className="event-header__button">Update</div>}
+                <div onClick={this.updateHandler} className="event-header__button">Update</div>}
 
                 {
                 !((this.props.loginStatus) && ( selectedEvent.attendee.includes(this.props.userId))) &&
@@ -93,6 +98,7 @@ export class eventHeader extends Component {
                 <div id='trycancel' onClick={this.cancelHandler}className="event-header__button">Cancel to Join</div>}
 
                 {this.state.loginNeed && <Redirect to='/login'/>}
+                {this.state.updateDemand && <Redirect to={{pathname:`/update/${this.props.id}`,query:{eventId:this.props.id}}}/>}
             </div>
             :
             <h1>Loading</h1>

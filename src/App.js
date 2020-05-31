@@ -7,6 +7,7 @@ import Login from './components/auth/login';
 import Signup from './components/auth/signup';
 import EventDetail from './components/eventDetail/eventDetail';
 import Profile from './components/profile/profile';
+import Update from './components/update/update';
 
 
 
@@ -26,6 +27,7 @@ function App() {
           <Route path='/signup' component={Signup}/>
           <Route path='/event-detail/:id'exact component={EventDetail}/>
           <Route path='/profile' component={Profile}/>
+          <Route path='/update/:eventid' exact component={Update}/>
       </Switch>
     </div>
   
