@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {getAttendee} from '../../store/actions/eventActions';
 import firebase from 'firebase/app'
+import {Link} from 'react-router-dom'
 
 
 export class attendee extends Component {
@@ -41,10 +42,13 @@ export class attendee extends Component {
 
         
         return (
-            <div className='attendee'>
-              <img src={this.picUrlRandom()} alt="attendee"/>
-                <p>{this.state.displayname}</p>
-            </div>
+            <Link to={{pathname:`/people/${this.attendeeId}`,query:{uid:this.attendeeId}}}>
+                <div className='attendee'>
+                <img src={this.picUrlRandom()} alt="attendee"/>
+                    <p>{this.state.displayname}</p>
+                    
+                </div>
+            </Link>
         )
     }
 }

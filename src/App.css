@@ -137,6 +137,9 @@
 .link-router {
   text-decoration: none; }
 
+.link-router:focus {
+  border: 1px solid peru; }
+
 .container {
   display: grid;
   grid-template-columns: 60% 40%;
@@ -1535,6 +1538,11 @@
     .btn-cancel {
       justify-self: end;
       margin-right: 13rem; } }
+
+.persona img {
+  border-radius: 50%;
+  width: 9rem;
+  height: 9rem; }
 
 * {
   margin: 0;

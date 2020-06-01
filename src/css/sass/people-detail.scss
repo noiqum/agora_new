@@ -1,0 +1,11 @@
+@import './variables.scss';
+
+.persona{
+
+    & img{
+
+        border-radius: 50%;
+        width:9rem;
+        height: 9rem;
+    }
+}

@@ -8,6 +8,8 @@ import Signup from './components/auth/signup';
 import EventDetail from './components/eventDetail/eventDetail';
 import Profile from './components/profile/profile';
 import Update from './components/update/update';
+import People from './components/people/people';
+import PeopleDetail  from './components/people-detail/peopleDetail';
 
 
 
@@ -22,7 +24,8 @@ function App() {
       <Switch>
           <Route path='/' exact component={Container}/>
           <Route path='/event'   component={Container}/>
-          <Route path='/people'/>
+          <Route path='/people' exact component={People}/>
+          <Route path='/people/:peopleid' exact component={PeopleDetail}/>
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup}/>
           <Route path='/event-detail/:id'exact component={EventDetail}/>

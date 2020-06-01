@@ -11,7 +11,7 @@
 //people page 
 // react router animation options var mi arastir
 //event form da saat opsiyonu yok ve database e saat i eklemek gerek
-
+// update page udate no ux
 
 
 // google drive 178 de kaldik

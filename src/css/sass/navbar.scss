@@ -148,6 +148,7 @@
                     border-radius: 3px;
 
                 }
+                
 
                 &:last-child{
                     position: relative;
@@ -181,4 +182,8 @@
 
 .link-router{
     text-decoration: none;
+}
+
+.link-router:focus{
+    border: 1px solid peru;
 }

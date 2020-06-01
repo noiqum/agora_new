@@ -8,7 +8,8 @@ import {Link} from 'react-router-dom';
 
 
 const linkStyle ={
-    textDecoration:'none'
+    textDecoration:'none',
+   
 };
 
 // let screenwidth =window.innerWidth;

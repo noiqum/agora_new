@@ -21,7 +21,7 @@ import {connect} from 'react-redux'
         <nav className='navbar__nav'>
                 <ul className="navbar__nav__list">
                     {login &&
-                    <Link className='link-router' to='/event' onClick={onDefaultClick}> 
+                    <Link  style={linkStyle} className='link-router' to='/event' onClick={onDefaultClick}> 
                     <li className="navbar__nav__list__link">event</li>
                     </Link>}
                    

@@ -60,3 +60,23 @@ export const validateState=(obj)=>{
     }
 }
 
+export const defaultImage='https://firebasestorage.googleapis.com/v0/b/agora-event-platform.appspot.com/o/userPlaceHolder.png?alt=media&token=9b6cc96e-a380-4d30-9060-72cc0294ce89';
+
+export const checkValidity=(elm)=>{
+    let valid=true;
+    if(elm === '' || elm === undefined){
+        return valid=false
+    }else{
+        return valid
+    }
+    
+}
+
+export const renderUtil=(piece,label)=>{
+    if(checkValidity(piece)){
+        return `${label}:${piece}`
+    }
+    else {
+        return null
+    }
+}
