@@ -72,11 +72,11 @@ export class eventUpdateForm extends Component {
         const {title,category,date,address,description,city}=this.state.event;
         return (
             <div className='update-form'>
-                <div className="update-form__title">
+                
                     <label htmlFor="title" className="update-form__title-label">Title</label>
                     <input onChange={this.inputHandler} name='title' value={title} type="text" className="update-form__title-input"/>
-                </div>
-                <div className="update-form__category">
+                
+                
                     <label htmlFor="category" className="update-form__category-label">category</label>
                     <select name="category" id="category" className="update-form__category-selecet" value={category} onChange={this.inputHandler}>
                     <option disabled value="" >please pick a category</option>
@@ -87,25 +87,25 @@ export class eventUpdateForm extends Component {
                             <option value="health" >health</option>
                             <option value="others" >others</option>
                     </select>
-                </div>
-                <div className="update-form__date">
+                
+                
                     <label htmlFor="date" className="update-form__date-label">date</label>
                     <input type="date" className="update-form__date-input" value={date} onChange={this.inputHandler}/>
-                </div>
-                <div className="update-form__city">
+                
+               
                     <label htmlFor="city" className="update-form__city-label">City</label>
                     <input value={city} name='city' type="text" className="update-form__city-input" onChange={this.inputHandler}/>
-                </div>
-                <div className="update-form__address">
+                
+                
                     <label htmlFor="address" className="update-form__address-label">address</label>
                     <input value={address} name="address" onChange={this.inputHandler} type="text" className="update-form__address-input"/>
-                </div>
-                <div className="update-form__description">
+                
+                
                     <label htmlFor="description" className="update-form__description-label">description</label>
                     <input value={description} onChange={this.inputHandler} type="text" className="update-form__description-input"/>
-                </div>
-                <button  onClick={this.updateHandler}className="update-form__button">Update</button>
-                <button onClick={this.cancelHandler} className="update-form__button">Cancel</button>
+                
+                <button  onClick={this.updateHandler}className="update-form__button btn-update">Update</button>
+                <button onClick={this.cancelHandler} className="update-form__button btn-cancel">Cancel</button>
             </div>
         )
     }
