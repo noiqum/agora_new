@@ -2,7 +2,7 @@
 // 2 profile page
 //event cover image update
 
-// cancel and join button problem (call event from db with lifecycle methods use componentdidupdate and trigger re render or try firestore listener functionality)
+
 //login ile database user a ait people ve events dizinlerini cek
 // mobile version needs fixing
 //fix svg console warnings

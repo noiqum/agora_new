@@ -59,6 +59,11 @@ export class photo extends Component {
     render() {
         
         const {photos,profilePhoto}=this.props;
+        const profilePhotoHolder=()=>{
+           return profilePhoto !== undefined ? profilePhoto : {
+               dowvloadUrl:'gs://agora-event-platform.appspot.com/userPlaceHolder.png'
+           }
+        }
         return (
             <div className='photo'>
             <h2>Photos</h2>
@@ -112,7 +117,7 @@ export class photo extends Component {
                     return <PhotoItem 
                     name={photo.fileName}
                     key={index} photo={photo}
-                     mainPhoto={profilePhoto}
+                     mainPhoto={profilePhotoHolder()}
                      onMainClick={()=>{this.mainHandle(photo)}}
                      onDeleteClick={()=>{this.deleteHandle(photo)}}
                      />

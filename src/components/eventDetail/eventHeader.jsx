@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Redirect,withRouter} from 'react-router-dom';
 import {joinEvent,onCancelClick,initEvents} from '../../store/actions/eventActions';
+import firebase from 'firebase/app'
 
 
 
@@ -15,26 +16,22 @@ export class eventHeader extends Component {
             updateDemand:false,
         }
    
+        listenEvent=null;
         
-        
-       componentDidMount(){
-        let eventIdSelected=this.props.id;
-        let events=this.props.events;
-        let arr=events.filter((event)=>{
-            return event.id === eventIdSelected
-        })
-        let selectedEventById=arr[0];
-        this.setState({selectedEvent:selectedEventById})
-       }
 
-       componentDidUpdate(){
-       
-        
-       }
+      componentDidMount(){
+       this.listenEvent=firebase.firestore().doc(`events/${this.props.id}`)
+       .onSnapshot(
+           doc=>{
+              let data=doc.data()
+              this.setState({
+                  selectedEvent:data
+              })
+           }
+       )
+      }
        componentWillUnmount(){
-           this.setState({
-               selectedEvent:null
-           })
+           this.listenEvent();
        }
             
         joinHandler=()=>{

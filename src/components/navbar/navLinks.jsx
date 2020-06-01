@@ -9,6 +9,11 @@ import {connect} from 'react-redux'
         'all':'inherit'
     };
    
+    const profilePhotoHolder=()=>{
+           return profilePhoto !== '' ? profilePhoto.downloadUrl : 
+               'https://firebasestorage.googleapis.com/v0/b/agora-event-platform.appspot.com/o/userPlaceHolder.png?alt=media&token=9b6cc96e-a380-4d30-9060-72cc0294ce89'
+           
+    }
 
 
     return (
@@ -38,9 +43,9 @@ import {connect} from 'react-redux'
                     {login && <Link style={linkStyle} 
                     to={{pathname:`/profile/:${id}`}}
                     onClick={onDefaultClick}>
-                    <li className="navbar__nav__list__link">{
-                    profilePhoto && <img  alt='profile_pic'src={`${profilePhoto.downloadUrl}`}></img>
-                    }</li></Link>}
+                    <li className="navbar__nav__list__link">
+                     <img  alt='profile_pic'src={`${profilePhotoHolder()}`}></img>
+                    </li></Link>}
 
                 </ul>
             </nav>
