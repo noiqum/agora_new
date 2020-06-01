@@ -73,6 +73,7 @@
         height: 3rem; 
         align-self: center; 
         color: $blue-dark;
+        transition: all 0.4s ease;
 
         @media screen and(max-width:500px) {
             grid-row: auto;
@@ -91,7 +92,7 @@
         color:$yellow;
     }
     &:active{
-        transform: translateY(-3px);
+        transform: translateY(3px);
     }
 }
 .btn-cancel{
@@ -101,7 +102,7 @@
         color: red;
     }
     &:active{
-        transform: translateY(-3px);
+        transform: translateY(3px);
     }
 
     @media screen and (max-width:500px) {

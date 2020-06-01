@@ -1507,7 +1507,8 @@
     letter-spacing: 2px;
     height: 3rem;
     align-self: center;
-    color: #05668d; }
+    color: #05668d;
+    transition: all 0.4s ease; }
     @media screen and (max-width: 500px) {
       .update-form__button {
         grid-row: auto; } }
@@ -1518,7 +1519,7 @@
     background-color: #05668d;
     color: #f0f3bd; }
   .btn-update:active {
-    transform: translateY(-3px); }
+    transform: translateY(3px); }
 
 .btn-cancel {
   justify-self: center; }
@@ -1526,7 +1527,7 @@
     background-color: grey;
     color: red; }
   .btn-cancel:active {
-    transform: translateY(-3px); }
+    transform: translateY(3px); }
   @media screen and (max-width: 500px) {
     .btn-cancel {
       justify-self: end; } }

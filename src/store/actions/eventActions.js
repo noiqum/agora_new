@@ -37,25 +37,7 @@ firebase.initializeApp(firebaseConfig);
     }
  }
 
-//  export const initEvents=()=>{
-//      return dispatch => {
-//          firebase.firestore().collection('events').get().then(
-//             snapshot=>{
-//                 let events_arr=[];
-//                 snapshot.docs.forEach(doc=>{
-//                     let event=doc.data();
-//                     event['id']=doc.id;
-//                     events_arr.push(event);
-                    
-//                 })
-//                 let events={...[...events_arr]}
-                
-               
-//               dispatch(getEvents(events))
-//         }).catch(err=>console.error(err));
-         
-//      }
-//  }
+
 
 export const initEvents=()=>{
     return dispatch=>{
@@ -79,23 +61,7 @@ export const initEvents=()=>{
      }
  }
 
-//  export const joinEvent=(eventId,userId)=>{
-//      return dispatch =>{
-         
-//         firebase.firestore().collection('events').doc(eventId)
-//         .update({"attendee":firebase.firestore.FieldValue.arrayUnion(userId)})
-//         .then(
-//             firebase.firestore().collection('user').doc(userId)
-//             .update({"joinEvent":firebase.firestore.FieldValue.arrayUnion(eventId)})
-//         )
-       
-//         .then(
-//             dispatch(joinEventClick())
-//         )
-//         .catch(err=>console.log(err))
-        
-//      }
-//  }
+
 export const joinEventClickStart=()=>{
     return{
         type:'JOIN_EVENT_CLICK_START'

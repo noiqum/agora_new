@@ -1,4 +1,4 @@
-// 1 update event
+
 // 2 profile page
 //event cover image update
 

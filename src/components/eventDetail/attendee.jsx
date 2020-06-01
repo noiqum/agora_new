@@ -16,8 +16,7 @@ export class attendee extends Component {
     
     componentDidMount(){
         firebase.firestore().collection('user').doc(this.attendeeId)
-        .get()
-        .then(res=>{
+        .onSnapshot(res=>{
             let attendeeDB=res.data()
             this.displayname=attendeeDB.displayName;
             this.photoUrl=attendeeDB.photoUrl;
@@ -26,8 +25,8 @@ export class attendee extends Component {
                 displayname:attendeeDB.displayName,
                 photoUrl:attendeeDB.photoUrl
             });
-        }
-        )
+        })
+        
     }
     
      picUrlRandom=()=>{
