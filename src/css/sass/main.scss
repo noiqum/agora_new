@@ -1,44 +1,38 @@
-@import './mixins.scss';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
-@import './navbar.scss';
-@import './container.scss';
-@import './event-item.scss';
-@import './eventform.scss';
-@import './auth.scss';
-@import './login.scss';
-@import './error.scss';
-@import './signup.scss';
-@import './aside.scss';
-@import './eventDetail.scss';
-@import './event-header.scss';
-@import './event-info.scss';
-@import './event-attendee.scss';
-@import './event-chat.scss';
-@import './attendee.scss';
-@import './profile.scss';
-@import './basic.scss';
-@import './photo.scss';
-@import './photo-item.scss';
-@import './about.scss';
-@import './contact.scss';
-@import './contact-item.scss';
-@import './event-update-form.scss';
-@import './people-detail.scss';
+@import "./mixins.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+@import "./navbar.scss";
+@import "./container.scss";
+@import "./event-item.scss";
+@import "./eventform.scss";
+@import "./auth.scss";
+@import "./login.scss";
+@import "./error.scss";
+@import "./signup.scss";
+@import "./aside.scss";
+@import "./eventDetail.scss";
+@import "./event-header.scss";
+@import "./event-info.scss";
+@import "./event-attendee.scss";
+@import "./event-chat.scss";
+@import "./attendee.scss";
+@import "./profile.scss";
+@import "./basic.scss";
+@import "./photo.scss";
+@import "./photo-item.scss";
+@import "./about.scss";
+@import "./contact.scss";
+@import "./contact-item.scss";
+@import "./event-update-form.scss";
+@import "./people-detail.scss";
+@import "./event-link.scss";
 
-
-
-
-
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root{
-    font-size: 10px;
-    font-family: 'Roboto', sans-serif;
+:root {
+  font-size: 10px;
+  font-family: "Roboto", sans-serif;
 }

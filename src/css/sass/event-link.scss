@@ -1,0 +1,40 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.eventlink {
+  &-container {
+    & a {
+      all: inherit;
+      width: 100%;
+    }
+  }
+
+  display: grid;
+  grid-gap: 2rem;
+  background-color: rgba(238, 238, 238, 0.699);
+  justify-items: start;
+  align-items: start;
+  width: 80%;
+  min-width: 15rem;
+  max-width: 24.5rem;
+  height: max-content;
+  margin: 1rem;
+  padding: 1rem;
+  color: $blue-dark;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+
+  & span {
+    justify-self: center;
+    text-align: center;
+  }
+
+  & svg {
+    width: 2rem;
+    height: 2.5rem;
+    fill: $blue-dark;
+  }
+}

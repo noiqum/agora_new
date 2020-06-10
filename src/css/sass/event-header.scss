@@ -1,80 +1,90 @@
-@import './mixins.scss';
-@import './variables.scss';
+@import "./mixins.scss";
+@import "./variables.scss";
 
-.event-header{
-    margin-top: 1rem;
-    @include center;
-    width:100%;
-   
-    border-radius: 10px;
-    background: $grey-light;
+.event-header {
+  @include center;
+  width: 100%;
+  min-width: 80vw;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: $grey-light;
+
+  @include respond(middle) {
+    display: grid;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    width: 60%;
+    margin: 3rem;
+    background-color: white;
+    min-width: unset;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80% 10% 10%;
+  }
+
+  &__cover {
+    width: 70%;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 1rem;
-    @include respond(middle){
-        display: grid;
-        grid-row: 1/2;
-        grid-column: 1/2;
-        width: 60%;
-        margin:3rem;
-        background-color: white;
-        
-        grid-template-columns: 1fr;
-        grid-template-rows: 80% 10% 10%;
+    border-radius: 5px;
+    overflow: hidden;
+
+    @include respond(middle) {
+      width: 100%;
+      height: 30rem;
+      border: 1px solid gray;
+      grid-row: 1/2;
     }
-
-    &__cover{
-        width:70%;
-        height:25rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 1rem;
-        border-radius: 5px;
-        overflow: hidden;
-
-        @include respond(middle){
-            width: 100%;
-            height: 30rem;
-            border: 1px solid gray;
-            grid-row: 1/2;
-        }
-        &-img{
-            background-image:url('./css/images/ai-sm.jpg');
-            width: 100%;
-            height:100%;
-            color:white;
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-
-            
-
-
-            
-        }
-        &-title{
-            font-size:2rem ;  
-            color: $blue-dark;
-            text-transform: uppercase;
-        }
-        &-date{
-            font-size: 1.6rem;
-            letter-spacing: 2px;
-        }
-        &-host{
-            
-            font-size: 1.4rem;
-        }
+    &-host {
+      text-transform: uppercase;
+      padding: 1rem;
+      @include respond(middle) {
+        padding: 2rem;
+      }
+      & a {
+        text-decoration: none;
+        color: $green-dark;
+        cursor: pointer;
+      }
+      & em {
+        margin-right: 1rem;
+      }
     }
-
-    &__button{
-       @include button;
-       width: 10rem;
-       text-align: center;
-       padding: 1rem;
-
-       &:active{
-           transform: translateY(2px);
-       }
+    &-img {
+      background-image: url("./css/images/ai-sm.jpg");
+      width: 100%;
+      height: 100%;
+      color: white;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
     }
+    &-title {
+      font-size: 2rem;
+      color: $blue-dark;
+      text-transform: uppercase;
+      margin-top: 1rem;
+    }
+    &-date {
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      padding: 1rem;
+    }
+    &-host {
+      font-size: 1.4rem;
+    }
+  }
 
+  &__button {
+    @include button;
+    width: 10rem;
+    text-align: center;
+    padding: 1rem;
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
 }
