@@ -142,12 +142,16 @@
 
 .container {
   display: grid;
-  grid-template-columns: 60% 40%;
-  grid-gap: 2rem;
-  padding: 2rem;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; }
+  grid-template-columns: 1fr; }
+  @media screen and (min-width: 600px) {
+    .container {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      grid-gap: 2rem;
+      padding: 2rem;
+      width: 100%;
+      height: 100%;
+      overflow: hidden; } }
 
 .event {
   display: flex;
@@ -252,17 +256,69 @@
 
 .eventform {
   display: none; }
+  @media screen and (max-width: 590px) {
+    .eventform {
+      width: 90%;
+      height: auto;
+      display: block;
+      margin: 0 auto; } }
+  @media screen and (max-width: 590px) and (min-width: 600px) and (max-width: 1000px) {
+    .eventform__form {
+      width: 100%; } }
+  .eventform__form {
+    display: grid;
+    grid-template-rows: repeat(7, 6rem);
+    border: 2px solid grey;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.637); }
+    @media screen and (min-width: 1001px) {
+      .eventform__form {
+        width: 80%; } }
+    @media screen and (max-width: 599px) {
+      .eventform__form {
+        grid-template-rows: repeat(7, 4rem); } }
+    .eventform__form > div {
+      display: flex; }
+      .eventform__form > div > label {
+        flex: 1;
+        align-self: flex-end;
+        border-bottom: 1px solid grey;
+        padding: 0.5rem 1rem;
+        color: #05668d; }
+        @media screen and (max-width: 599px) {
+          .eventform__form > div > label {
+            font-size: 1rem; } }
+      .eventform__form > div > input,
+      .eventform__form > div > select {
+        flex: 2;
+        box-shadow: none;
+        border: none;
+        border-bottom: 1px solid grey;
+        border-left: 1px solid grey;
+        color: #05668d;
+        text-transform: uppercase; }
+        @media screen and (max-width: 599px) {
+          .eventform__form > div > input,
+          .eventform__form > div > select {
+            font-size: 1rem; } }
+    .eventform__form label {
+      font-size: 1.8rem;
+      text-transform: capitalize; }
   @media screen and (min-width: 600px) {
     .eventform {
       display: unset; }
       .eventform__form {
-        width: 80%;
         display: grid;
         grid-template-rows: repeat(7, 6rem);
         border: 2px solid grey;
         border-radius: 5px;
         overflow: hidden;
-        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.637); }
+        box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.637); } }
+    @media screen and (min-width: 600px) and (min-width: 1001px) {
+      .eventform__form {
+        width: 80%; } }
+  @media screen and (min-width: 600px) {
         .eventform__form > div {
           display: flex; }
           .eventform__form > div > label {
@@ -300,6 +356,22 @@
         .eventform__button__div > button:hover {
           background-color: grey;
           color: white; } }
+  .eventform__button__div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; }
+    .eventform__button__div > button {
+      width: 7rem;
+      height: 3rem;
+      margin: 1rem;
+      border-radius: 5px;
+      box-shadow: unset;
+      border: unset;
+      background-color: #05668d;
+      color: #f0f3bd;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer; }
 
 .auto-complete {
   flex: 2;
@@ -772,6 +844,13 @@
       text-align: center;
       cursor: pointer;
       width: 10rem; } }
+
+.aside {
+  grid-column: 2/3; }
+  @media screen and (max-width: 1000px) {
+    .aside {
+      grid-column: 1/2;
+      grid-row: 1/2; } }
 
 .event-detail-container {
   display: flex;
@@ -1699,23 +1778,25 @@
     height: 2.5rem;
     fill: #05668d; }
 
-.event-dash-board__check {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  color: #05668d; }
-  .event-dash-board__check-input {
-    display: none; }
-    .event-dash-board__check-input:checked + label svg {
-      fill: #00a896; }
-  .event-dash-board__check-label {
-    cursor: pointer; }
-    .event-dash-board__check-label svg {
-      width: 2rem;
-      height: 2rem; }
+.event-dash-board {
+  grid-column: 1/2; }
+  .event-dash-board__check {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    color: #05668d; }
+    .event-dash-board__check-input {
+      display: none; }
+      .event-dash-board__check-input:checked + label svg {
+        fill: #00a896; }
+    .event-dash-board__check-label {
+      cursor: pointer; }
+      .event-dash-board__check-label svg {
+        width: 2rem;
+        height: 2rem; }
 
 .checked {
   fill: #d7d7d9; }

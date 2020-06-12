@@ -1,14 +1,20 @@
-@import  './mixins.scss';
-@import './variables.scss';
+@import "./mixins.scss";
+@import "./variables.scss";
 
-.aside__button{
+.aside__button {
+  @include button;
+  font-size: 1.2rem;
 
+  @include respond(middle) {
     @include button;
-    font-size: 1.2rem;
+    width: 10rem;
+  }
+}
 
-    @include respond (middle){
-        @include button;
-        width: 10rem;
-    }
-    
+.aside {
+  grid-column: 2/3;
+  @media screen and (max-width: 1000px) {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
 }

@@ -1,6 +1,7 @@
 @import "./variables.scss";
 
 .event-dash-board {
+  grid-column: 1/2;
   &__check {
     display: flex;
     justify-content: flex-end;

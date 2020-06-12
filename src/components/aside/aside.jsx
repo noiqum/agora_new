@@ -34,7 +34,7 @@ export class aside extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="aside">
         {this.props.loginStatus && (
           <button onClick={this.formButtonClick} className="aside__button">
             Create Event
