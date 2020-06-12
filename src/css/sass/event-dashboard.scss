@@ -1,0 +1,32 @@
+@import "./variables.scss";
+
+.event-dash-board {
+  &__check {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    color: $blue-dark;
+
+    &-input {
+      display: none;
+      &:checked + label svg {
+        fill: $green-dark;
+      }
+    }
+
+    &-label {
+      cursor: pointer;
+      & svg {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+}
+
+.checked {
+  fill: $grey-light;
+}

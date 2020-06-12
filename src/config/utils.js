@@ -78,3 +78,19 @@ export const checkValidityArray = (arr) => {
     return valid;
   }
 };
+
+export const checkArchived = (event) => {
+  const today = new Date();
+  const parseToday = Date.parse(today);
+  const eventDate = event.date.split("-");
+  const [year, month, day] = eventDate;
+  const eventDateFormated = new Date(year, month - 1, day);
+  const parseEventDate = Date.parse(eventDateFormated);
+  let result;
+  if (parseToday > parseEventDate) {
+    result = true;
+  } else {
+    result = false;
+  }
+  return result;
+};

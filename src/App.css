@@ -196,6 +196,10 @@
       .event__date {
         font-size: 1.8rem;
         padding: 0.5rem 1rem; } }
+    .event__date-archived {
+      color: red;
+      text-transform: capitalize;
+      margin-left: 2rem; }
   .event__address {
     margin-right: 0.5rem;
     margin-bottom: 1rem; }
@@ -1694,6 +1698,27 @@
     width: 2rem;
     height: 2.5rem;
     fill: #05668d; }
+
+.event-dash-board__check {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  color: #05668d; }
+  .event-dash-board__check-input {
+    display: none; }
+    .event-dash-board__check-input:checked + label svg {
+      fill: #00a896; }
+  .event-dash-board__check-label {
+    cursor: pointer; }
+    .event-dash-board__check-label svg {
+      width: 2rem;
+      height: 2rem; }
+
+.checked {
+  fill: #d7d7d9; }
 
 * {
   margin: 0;

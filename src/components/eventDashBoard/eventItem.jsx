@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { checkArchived } from "../../config/utils";
 
 function EventItem({ event }) {
   let picUrlRandom = () => {
@@ -14,7 +15,12 @@ function EventItem({ event }) {
       <h3 className="event__title">{event.title}</h3>
       <p className="event__hostname">{event.hostName}</p>
       <p className="event__category">{event.category}</p>
-      <span className="event__date">{event.date}</span>
+      <span className="event__date">
+        {event.date}
+        {checkArchived(event) && (
+          <span className="event__date-archived">archived</span>
+        )}
+      </span>
       <span className="event__address">{event.address}</span>
       <div className="event__attendee">
         {event.attendee && (
