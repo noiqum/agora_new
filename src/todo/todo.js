@@ -1,7 +1,7 @@
 //event cover image update
 
 //fix svg console warnings
-//mobilde create event button i aktif degil
+
 // eventleri search edecek bir component yaz
 //people page
 //favicon fix not use png
@@ -9,4 +9,6 @@
 // profile update page udate no ux
 //profile page conctact part finish
 //people page contact part don t show up
-// google drive 184 de kaldik
+// firebase listening a query kismina bak listing kismina ekleyebilirsin
+//event path deki kisma search component i ekle ve oraya da infinitive scroll ekle , search componet yaparken webdevsimplified a bak ordaki text input clear i dene
+// google drive 186 de kaldik

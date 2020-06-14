@@ -5,15 +5,46 @@ import { initEvents } from "../../store/actions/eventActions";
 import { Link } from "react-router-dom";
 import { ReactComponent as Check } from "../../css/svg/check.svg";
 import { checkArchived } from "../../config/utils";
+import InfiniteScroll from "react-infinite-scroller";
 
 export class eventDashBoard extends Component {
   state = {
-    showArchived: false,
+    showArchived: true,
+    moreEvents: false,
+    loadedEvents: [],
+    loadingInitial: true,
+    loading: false,
   };
 
-  componentDidMount() {
-    this.props.initEvents();
+  async componentDidMount() {
+    let next = await this.props.initEvents();
+    if (next && next.docs && next.docs.length > 1) {
+      this.setState({
+        moreEvents: true,
+        loadingInitial: false,
+      });
+    }
   }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.events !== nextProps) {
+      this.setState({
+        loadedEvents: [
+          ...new Set([...this.state.loadedEvents, ...this.props.events]),
+        ],
+      });
+    }
+  }
+  getNextEvents = async () => {
+    let lastEvent =
+      this.props.events && this.props.events[this.props.events.length - 1];
+
+    let next = await this.props.initEvents(lastEvent);
+    if (next && next.docs && next.docs.length <= 1) {
+      this.setState({
+        moreEvents: false,
+      });
+    }
+  };
 
   windowScreen = window.innerWidth;
   style = { all: "inherit", curser: "pointer" };
@@ -23,8 +54,6 @@ export class eventDashBoard extends Component {
     }));
   };
   render() {
-    const { events } = this.props;
-
     return (
       <>
         <div className="event-dash-board">
@@ -34,13 +63,25 @@ export class eventDashBoard extends Component {
               id="archived"
               className="event-dash-board__check-input"
               onClick={this.checkHandle}
+              checked={this.state.showArchived ? true : false}
             />
             <label htmlFor="archived" className="event-dash-board__check-label">
               Show Archived Events : <Check className="checked" />
             </label>
           </div>
-          {this.state.showArchived
-            ? events.map((event) => {
+          {this.state.showArchived ? (
+            <InfiniteScroll
+              pageStart={0}
+              loadMore={this.getNextEvents}
+              hasMore={this.state.moreEvents}
+              initialLoad={false}
+              loader={
+                <div className="loader" key={0}>
+                  Loading ...
+                </div>
+              }
+            >
+              {this.state.loadedEvents.map((event) => {
                 if (this.windowScreen < 600) {
                   return (
                     <Link
@@ -58,8 +99,21 @@ export class eventDashBoard extends Component {
                 } else {
                   return <EventItem key={event.id} event={event} />;
                 }
-              })
-            : events
+              })}
+            </InfiniteScroll>
+          ) : (
+            <InfiniteScroll
+              pageStart={0}
+              loadMore={this.getNextEvents}
+              hasMore={this.state.moreEvents}
+              initialLoad={false}
+              loader={
+                <div className="loader" key={0}>
+                  Loading ...
+                </div>
+              }
+            >
+              {this.state.loadedEvents
                 .filter((event) => {
                   return !checkArchived(event);
                 })
@@ -82,6 +136,8 @@ export class eventDashBoard extends Component {
                     return <EventItem key={event.id} event={event} />;
                   }
                 })}
+            </InfiniteScroll>
+          )}
         </div>
       </>
     );
@@ -95,7 +151,7 @@ const mapPropsToState = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    initEvents: () => dispatch(initEvents()),
+    initEvents: (lastevent) => dispatch(initEvents(lastevent)),
   };
 };
 

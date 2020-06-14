@@ -34,25 +34,51 @@ export const getEvents = (data) => {
   };
 };
 
-export const initEvents = () => {
-  return (dispatch) => {
-    firebase
-      .firestore()
-      .collection("events")
-      .onSnapshot((snapshot) => {
-        let events_arr = [];
-        snapshot.docs.forEach((doc) => {
-          let event = doc.data();
-          event["id"] = doc.id;
-          events_arr.push(event);
-        });
+// export const initEvents = () => {
+//   return (dispatch) => {
+//     firebase
+//       .firestore()
+//       .collection("events")
+//       .onSnapshot((snapshot) => {
+//         let events_arr = [];
+//         snapshot.docs.forEach((doc) => {
+//           let event = doc.data();
+//           event["id"] = doc.id;
+//           events_arr.push(event);
+//         });
 
-        let events = { ...[...events_arr] };
-        dispatch(getEvents(events));
-      });
+//         let events = { ...[...events_arr] };
+//         dispatch(getEvents(events));
+//       });
+//   };
+// };
+export const initEvents = (lastEvent) => {
+  return async (dispatch) => {
+    let eventsRef = firebase.firestore().collection("events");
+    try {
+      let startAfter = lastEvent && (await eventsRef.doc(lastEvent.id).get());
+      let query;
+      lastEvent
+        ? (query = eventsRef.startAfter(startAfter).limit(3))
+        : (query = eventsRef.limit(3));
+
+      let querySnap = await query.get();
+      if (querySnap.docs.length < 1) {
+        return querySnap;
+      }
+      let events_arr = [];
+      for (let i = 0; i < querySnap.docs.length; i++) {
+        let evnt = querySnap.docs[i].data();
+        evnt["id"] = querySnap.docs[i].id;
+        events_arr.push(evnt);
+      }
+      dispatch(getEvents({ ...[...events_arr] }));
+      return querySnap;
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
-
 export const joinEventClick = () => {
   return {
     type: "JOIN_EVENT_CLICK",
