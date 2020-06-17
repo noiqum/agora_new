@@ -44,6 +44,11 @@
     border-radius: 5px;
     background-color: $grey-light;
     color: $blue-dark;
+    cursor: pointer;
+
+    &:focus {
+      transform: translateY(3px);
+    }
 
     @include respond(middle) {
       justify-self: start;

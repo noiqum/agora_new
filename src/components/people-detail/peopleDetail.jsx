@@ -10,7 +10,7 @@ import {
   checkValidityArray,
 } from "../../config/utils";
 import EventLink from "../people/event-link";
-import LazyLoad from "react-lazy-load";
+import { addfollower, unFollow } from "../../store/actions/profileActions";
 import User from "../../css/images/user.png";
 
 export class peopleDetail extends Component {
@@ -30,11 +30,19 @@ export class peopleDetail extends Component {
       .get()
       .then((doc) => {
         let data = doc.data();
+        if (data.follower && data.follower.includes(this.props.userId)) {
+          this.setState({
+            persona: data,
+            id: id,
+            follow: true,
+          });
+        } else {
+          this.setState({
+            persona: data,
+            id: id,
+          });
+        }
 
-        this.setState({
-          persona: data,
-          id: id,
-        });
         if (checkValidity(data.mainPhoto)) {
           this.setState({
             profilePic: data.mainPhoto.downloadUrl,
@@ -44,6 +52,19 @@ export class peopleDetail extends Component {
         }
       });
   }
+  handleFollow = () => {
+    if (this.state.follow === false) {
+      this.props.follow(this.state.id, this.props.userId);
+      this.setState({
+        follow: true,
+      });
+    } else {
+      this.props.unFollow(this.state.id, this.props.userId);
+      this.setState({
+        follow: false,
+      });
+    }
+  };
 
   render() {
     const { profilePic, persona, follow } = this.state;
@@ -54,13 +75,16 @@ export class peopleDetail extends Component {
           <h4>loading</h4>
         ) : (
           <div className="persona">
-            <img src={profilePic} alt="profile_pic" />
-            <button className="persona__button">
+            <img src={profilePic || User} alt="profile_pic" />
+            <button onClick={this.handleFollow} className="persona__button">
               {follow ? "unfollow" : "follow"}
             </button>
             <h4>{persona.displayName}</h4>
             <div className="persona__info">
-              <p>{renderUtil(ageCalculate(persona.birthday), "age")}</p>
+              <p>
+                {renderUtil(ageCalculate(persona.birthday), "age") ||
+                  "not shared"}
+              </p>
               <p>{renderUtil(persona.bio, "bio")}</p>
               <p>{renderUtil(persona.job, "job")}</p>
               <p>{renderUtil(persona.gender, "gender")}</p>
@@ -123,9 +147,16 @@ export class peopleDetail extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  userId: state.auth.user.id,
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    follow: (people, follower) => dispatch(addfollower(people, follower)),
+    unFollow: (people, follower) => dispatch(unFollow(people, follower)),
+  };
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(peopleDetail)
