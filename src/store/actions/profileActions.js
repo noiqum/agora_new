@@ -324,19 +324,30 @@ export const addfollower = (people, follower) => {
         .then((doc) => {
           return doc.data().displayName;
         });
-
-      await firestore
-        .collection("notification")
-        .doc(people)
-        .update({
+      if (firestore.doc(`notification/${people}`) === undefined) {
+        await firestore
+          .doc(`notification/${people}`)
+          .set({
+            note: [],
+          })
+          .then((doc) => {
+            console.log(doc);
+          });
+      } else {
+        await firestore
+          .collection("notification")
+          .doc(people)
+          .set({ note: [] })
+          .then(dispatch(addfollowerFinish()));
+        await firestore.doc(`notification/${people}`).update({
           note: firebase.firestore.FieldValue.arrayUnion({
             m: `${followerName} follows you`,
-            time: new Date(Date.now()),
-            peopleLink: follower,
+            time: Date.now(),
             people: true,
+            peopleLink: follower,
           }),
-        })
-        .then(dispatch(addfollowerFinish()));
+        });
+      }
     } catch (error) {
       console.log(error);
     }

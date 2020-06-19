@@ -94,3 +94,9 @@ export const checkArchived = (event) => {
   }
   return result;
 };
+
+export const dateConvert = (seconds) => {
+  const converted = new Date(seconds);
+
+  return converted.toLocaleDateString();
+};
