@@ -3,13 +3,24 @@ import firebase from "firebase/app";
 import { connect } from "react-redux";
 import { dateConvert } from "../../config/utils";
 import { Link } from "react-router-dom";
+import gsap from "gsap/gsap-core";
 
 export class listing extends Component {
   state = {
     notes: undefined,
   };
 
+  listingRef = React.createRef();
   async componentDidMount() {
+    if (this.listingRef.current) {
+      gsap.from(this.listingRef.current, {
+        duration: 2,
+        opacity: 0,
+        x: 400,
+        ease: "power3.inout",
+        delay: 2,
+      });
+    }
     await firebase
       .firestore()
       .doc(`notification/${this.props.userId}`)
@@ -18,7 +29,7 @@ export class listing extends Component {
         (doc) => {
           let notes = doc.data();
           console.log(notes);
-          if (Array.isArray(notes.note)) {
+          if (notes && Array.isArray(notes.note)) {
             this.setState({
               notes: notes.note,
             });
@@ -32,7 +43,7 @@ export class listing extends Component {
 
   render() {
     return (
-      <div className="listing">
+      <div ref={this.listingRef} className="listing">
         <span className="listing__title">Notifications</span>
         {this.state.notes !== undefined
           ? this.state.notes.map((note) => {

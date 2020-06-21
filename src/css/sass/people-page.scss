@@ -1,0 +1,49 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.people {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: repeat(4, 25%);
+  grid-row-gap: 2rem;
+
+  .people__container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    padding: 1rem 2rem;
+    @include respond(middle) {
+      justify-items: start;
+    }
+    & a img {
+      filter: none;
+    }
+    & a {
+      padding: 5px 2px;
+      margin: 5px;
+      border-bottom: 1px solid $blue-dark;
+
+      border-radius: 3px;
+      & .attendee {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__follower,
+  &__following {
+    @include center;
+    & label {
+      cursor: pointer;
+      font-size: 2rem;
+      color: $blue-dark;
+      text-transform: capitalize;
+      display: block;
+      margin: 0 auto;
+    }
+    & input {
+      display: none;
+    }
+  }
+}

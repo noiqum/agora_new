@@ -27,7 +27,8 @@
 @import "./event-link.scss";
 @import "./event-dashboard.scss";
 @import "./listing.scss";
-
+@import "./people-page.scss";
+@import "./loading.scss";
 * {
   margin: 0;
   padding: 0;
@@ -37,4 +38,8 @@
 :root {
   font-size: 10px;
   font-family: "Roboto", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }

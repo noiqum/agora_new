@@ -6,6 +6,7 @@ import { ReactComponent as Title } from "../../css/svg/title.svg";
 import { ReactComponent as Category } from "../../css/svg/category.svg";
 import { ReactComponent as Date } from "../../css/svg/date.svg";
 import { ReactComponent as Right } from "../../css/svg/right.svg";
+import Loading from "../loading/loading";
 export class eventLink extends Component {
   state = {
     event: null,
@@ -28,7 +29,7 @@ export class eventLink extends Component {
     return (
       <div className="eventlink-container">
         {this.state.event === null ? (
-          <h5>loading....</h5>
+          <Loading />
         ) : (
           <Link to={{ pathname: `/event-detail/${this.props.id}` }}>
             <div className="eventlink">

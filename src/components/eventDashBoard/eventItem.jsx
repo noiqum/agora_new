@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { checkArchived } from "../../config/utils";
+import gsap from "gsap/gsap-core";
 
 function EventItem({ event }) {
   let picUrlRandom = () => {
@@ -10,8 +11,18 @@ function EventItem({ event }) {
     return result;
   };
 
+  const eventItemRef = useRef(null);
+  useEffect(() => {
+    gsap.from(eventItemRef.current, {
+      opacity: 0,
+      y: 20,
+      duration: 3,
+      ease: "power2.out",
+    });
+  }, [eventItemRef]);
+
   return (
-    <div className="event">
+    <div ref={eventItemRef} className="event">
       <h3 className="event__title">{event.title}</h3>
       <p className="event__hostname">{event.hostName}</p>
       <p className="event__category">{event.category}</p>

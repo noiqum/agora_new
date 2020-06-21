@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Check } from "../../css/svg/check.svg";
 import { checkArchived } from "../../config/utils";
 import InfiniteScroll from "react-infinite-scroller";
-
+import Loading from "../loading/loading";
 export class eventDashBoard extends Component {
   state = {
     showArchived: true,
@@ -77,7 +77,7 @@ export class eventDashBoard extends Component {
               initialLoad={false}
               loader={
                 <div className="loader" key={0}>
-                  Loading ...
+                  <Loading />
                 </div>
               }
             >

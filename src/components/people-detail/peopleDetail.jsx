@@ -12,6 +12,8 @@ import {
 import EventLink from "../people/event-link";
 import { addfollower, unFollow } from "../../store/actions/profileActions";
 import User from "../../css/images/user.png";
+import gsap from "gsap/gsap-core";
+import Loading from "../loading/loading";
 
 export class peopleDetail extends Component {
   state = {
@@ -72,13 +74,15 @@ export class peopleDetail extends Component {
     return (
       <div>
         {persona === null ? (
-          <h4>loading</h4>
+          <Loading />
         ) : (
           <div className="persona">
             <img src={profilePic || User} alt="profile_pic" />
-            <button onClick={this.handleFollow} className="persona__button">
-              {follow ? "unfollow" : "follow"}
-            </button>
+            {this.props.login && (
+              <button onClick={this.handleFollow} className="persona__button">
+                {follow ? "unfollow" : "follow"}
+              </button>
+            )}
             <h4>{persona.displayName}</h4>
             <div className="persona__info">
               <p>
@@ -149,6 +153,7 @@ export class peopleDetail extends Component {
 
 const mapStateToProps = (state) => ({
   userId: state.auth.user.id,
+  login: state.auth.login,
 });
 
 const mapDispatchToProps = (dispatch) => {

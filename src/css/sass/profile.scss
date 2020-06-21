@@ -1,132 +1,128 @@
-@import './mixins.scss';
-@import './variables.scss';
+@import "./mixins.scss";
+@import "./variables.scss";
 
+.profile {
+  @media only screen and (min-width: 800px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 
-.profile{
+  &__header {
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5rem;
+    background-color: $blue-dark;
+    color: $yellow;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    @include respond(middle) {
+      display: none;
+    }
 
-    @media only screen and (min-width:800px) {
+    & svg {
+      fill: $yellow;
+      cursor: pointer;
+    }
+
+    &-checkbox {
+      &:checked .profile__links {
+        color: pink;
+      }
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+
+    padding: 0.5rem 1rem;
+    width: 100%;
+    height: 12rem;
+    margin-top: 2rem;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    line-height: 4px;
+    margin-right: 2rem;
+    @media only screen and (min-width: 800px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      width: 20vw;
+      height: 30rem;
+      order: 2;
+      border: 1px solid $blue-dark;
+      margin-top: 5rem;
+      border-radius: 5px;
+    }
+    @media only screen and (min-width: 800px) and (max-width: 1000px) {
+      width: 25vw;
+    }
+    @media only screen and (max-width: 550px) {
+      justify-content: space-around;
+      & a {
+        border-bottom: 1px solid $blue-dark;
+      }
+    }
+    & a {
+      text-decoration: none;
+      color: $blue-dark;
+      padding: 1rem 2rem;
+      font-size: 1.6rem;
+      @media only screen and (min-width: 550px) and (max-width: 800px) {
+        color: $yellow;
+        padding: 3rem 1rem;
+        width: 20%;
+        background-color: $blue-dark;
+        text-align: end;
+        font-size: 1rem;
+        &:first-child {
+          clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+        }
+        &:not(:first-child) {
+          clip-path: polygon(
+            75% 0%,
+            100% 50%,
+            75% 100%,
+            0% 100%,
+            25% 50%,
+            0% 0%
+          );
+        }
+      }
+
+      @media only screen and (min-width: 800px) {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: space-between;
-        align-items: flex-start;
-    }
-
-    &__header{
-
-        width: 100%;
-        height: 7rem;
-        display: flex;
-        justify-content: space-around;
         align-items: center;
-        margin-top: 5rem;
-        background-color: $blue-dark;
-        color:$yellow;
-        text-transform: uppercase;
-        padding: 0.5rem 1rem;
-        @include respond(middle){
-            display: none;
-        }
-        
-        & svg{
-            fill:$yellow;
-            cursor: pointer;
-            
-        }
+        align-self: stretch;
 
-        &-checkbox{
-            
-            &:checked .profile__links{
-                color:pink;
-            }
+        &:hover,
+        &:focus {
+          background-color: $blue-dark;
+          color: $yellow;
+          & svg {
+            fill: $yellow;
+          }
         }
-        
-        
+        &:hover svg {
+          fill: $yellow;
+        }
+      }
     }
-    
-
-    &__links{
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        flex-wrap: wrap;
-        
-        padding: 0.5rem 1rem;
-        width: 100%;
-        height: 12rem;
-        margin-top: 2rem;
-        text-transform: uppercase;
-        font-size: 1rem;
-        letter-spacing: 2px;
-        line-height: 4px;
-
-        @media only screen and (min-width:800px) {
-            display:flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            width: 20vw;
-            height:30rem;
-            order: 2;
-            border: 1px solid $blue-dark;
-            margin-top: 5rem;
-            border-radius: 5px;
-        }
-        @media only screen and (min-width:800px) and (max-width:1000px) {
-            width: 25vw;
-        }
-        @media only screen and (max-width:550px) {
-            justify-content: space-around;
-            & a {
-                border-bottom: 1px solid $blue-dark;
-            }
-        }
-        & a{
-            text-decoration: none;
-            color: $blue-dark;
-            padding: 1rem 2rem;
-            font-size: 1.6rem;
-            @media only screen and (min-width:550px) and (max-width:800px) {
-            color:$yellow;
-            padding: 3rem 1rem;
-            width: 20%;
-            background-color: $blue-dark;
-            text-align: end;
-            font-size: 1rem;
-                &:first-child{
-                    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
-                }
-                &:not(:first-child){
-                    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
-                } 
-            }
-            
-           @media only screen and (min-width:800px){
-               display: flex;
-               flex-direction: row;
-               flex-wrap: nowrap;
-               justify-content: space-between;
-               align-items: center;
-               align-self: stretch;
-
-               &:hover,
-               &:focus {
-                   background-color: $blue-dark;
-                   color:$yellow;
-                   & svg{
-                       fill:$yellow;
-                   }
-               }
-               &:hover svg{
-                   fill: $yellow;
-               }
-
-               
-           }
-
-        }
-    }
+  }
 }
 
 .image-icon,
@@ -134,14 +130,23 @@
 .contact-icon,
 .account-icon,
 .about-icon,
-.basic-icon{
-    display: none;
-    @media only screen and (min-width:800px){
-        display: inline-block;
-        fill: $blue-dark;
+.basic-icon {
+  display: none;
+  @media only screen and (min-width: 800px) {
+    display: inline-block;
+    fill: $blue-dark;
 
-        &:hover{
-            fill:$yellow;
-        }
+    &:hover {
+      fill: $yellow;
     }
+  }
+}
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
 }

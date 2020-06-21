@@ -5,6 +5,7 @@ import {
   deleteContactClick,
   addContactClick,
 } from "../../store/actions/profileActions";
+import gsap from "gsap/gsap-core";
 
 export class contact extends Component {
   state = {
@@ -18,7 +19,17 @@ export class contact extends Component {
     },
   };
 
+  contactRef = React.createRef();
+
   componentDidMount() {
+    if (this.contactRef.current) {
+      gsap.from(".contact", {
+        opacity: 0,
+        y: 100,
+        duration: 2,
+        ease: "power3.inout",
+      });
+    }
     if (this.props.contact !== undefined) {
       this.setState({
         contact: this.props.contact,
@@ -73,7 +84,7 @@ export class contact extends Component {
   render() {
     const { contact, list, elm, pick } = this.state;
     return (
-      <div className="contact">
+      <div ref={this.contactRef} className="contact">
         <h3>Contact Links</h3>
         <div className="contact__link">
           {contact &&

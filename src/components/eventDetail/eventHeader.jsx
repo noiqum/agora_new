@@ -7,6 +7,7 @@ import {
   initEvents,
 } from "../../store/actions/eventActions";
 import firebase from "firebase/app";
+import Loading from "../loading/loading";
 
 export class eventHeader extends Component {
   state = {
@@ -129,7 +130,7 @@ export class eventHeader extends Component {
             )}
           </div>
         ) : (
-          <h1>Loading</h1>
+          <Loading />
         )}{" "}
       </div>
     );

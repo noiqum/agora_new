@@ -1077,7 +1077,8 @@
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 2px;
-  line-height: 4px; }
+  line-height: 4px;
+  margin-right: 2rem; }
   @media only screen and (min-width: 800px) {
     .profile__links {
       display: flex;
@@ -1154,6 +1155,14 @@
       .about-icon:hover,
       .basic-icon:hover {
         fill: #f0f3bd; } }
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1; }
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in; }
 
 .basic {
   width: 90%;
@@ -1392,7 +1401,6 @@
 
 .about {
   width: 100%;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem; }
@@ -1843,6 +1851,62 @@
       color: #05668d;
       text-transform: capitalize; }
 
+.people {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-rows: repeat(4, 25%);
+  grid-row-gap: 2rem; }
+  .people .people__container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    padding: 1rem 2rem; }
+    @media screen and (min-width: 600px) {
+      .people .people__container {
+        justify-items: start; } }
+    .people .people__container a img {
+      filter: none; }
+    .people .people__container a {
+      padding: 5px 2px;
+      margin: 5px;
+      border-bottom: 1px solid #05668d;
+      border-radius: 3px; }
+      .people .people__container a .attendee {
+        margin-right: 0; }
+  .people__follower, .people__following {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+    .people__follower label, .people__following label {
+      cursor: pointer;
+      font-size: 2rem;
+      color: #05668d;
+      text-transform: capitalize;
+      display: block;
+      margin: 0 auto; }
+    .people__follower input, .people__following input {
+      display: none; }
+
+.loading {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto; }
+  .loading svg {
+    width: 3rem;
+    height: 3rem;
+    fill: #05668d;
+    animation-iteration-count: infinite;
+    animation-name: spin;
+    animation-duration: 0.8s;
+    animation-direction: normal;
+    animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.335); }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg); } }
+
 * {
   margin: 0;
   padding: 0;
@@ -1851,3 +1915,6 @@
 :root {
   font-size: 10px;
   font-family: "Roboto", sans-serif; }
+
+html {
+  scroll-behavior: smooth; }
