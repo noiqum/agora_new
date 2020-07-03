@@ -6,7 +6,7 @@ export const birthdayConvert = (birthday) => {
 };
 
 export const ageCalculate = (str) => {
-  if (str !== "") {
+  if (str !== "" && str !== undefined) {
     let converted = str.split("-");
 
     const [day, month, year] = converted;
@@ -16,6 +16,9 @@ export const ageCalculate = (str) => {
     let age = yearPresent - year;
 
     return age;
+  }
+  if (str === undefined) {
+    return "not shared";
   } else {
     return;
   }
@@ -99,4 +102,16 @@ export const dateConvert = (seconds) => {
   const converted = new Date(seconds);
 
   return converted.toLocaleDateString();
+};
+
+export const randomEvent = (events) => {
+  let size = events.length;
+  let randomIndex = [];
+  let eventList = [];
+  for (var i = 0; i < 3; i++) {
+    randomIndex.push(Math.floor(Math.random() * size + 1));
+    eventList.push(events[randomIndex[i]]);
+  }
+
+  return eventList;
 };

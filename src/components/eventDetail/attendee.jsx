@@ -39,10 +39,14 @@ export class Attendee extends Component {
   render() {
     return (
       <Link
-        to={{
-          pathname: `/people/${this.attendeeId}`,
-          query: { uid: this.attendeeId },
-        }}
+        to={
+          this.props.login
+            ? {
+                pathname: `/people/${this.attendeeId}`,
+                query: { uid: this.attendeeId },
+              }
+            : { pathname: "/login" }
+        }
       >
         <div ref={this.cont} className="attendee">
           <img src={this.picUrlRandom()} alt="attendee" />
@@ -55,6 +59,7 @@ export class Attendee extends Component {
 const mapStateToProps = (state) => {
   return {
     attendee: state.event.attendee,
+    login: state.auth.login,
   };
 };
 const mapDispatchToProps = (dispatch) => {

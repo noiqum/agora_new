@@ -10,6 +10,7 @@ import Profile from "./components/profile/profile";
 import Update from "./components/update/update";
 import People from "./components/people/people";
 import PeopleDetail from "./components/people-detail/peopleDetail";
+import Search from "./components/search/search";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/" exact component={Container} />
-          <Route path="/event" component={Container} />
+          <Route path="/search" component={Search} />
           <Route path="/people" exact component={People} />
           <Route path="/people/:peopleid" exact component={PeopleDetail} />
           <Route path="/login" component={Login} />

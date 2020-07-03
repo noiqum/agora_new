@@ -62,7 +62,13 @@ export class people extends Component {
             <div ref={this.containerRef} className="people__container">
               {this.state.data.follower &&
                 this.state.data.follower.map((person) => {
-                  return <Attendee key={person} attendeeId={person} />;
+                  return (
+                    <Attendee
+                      key={person}
+                      attendeeId={person}
+                      login={this.props.login}
+                    />
+                  );
                 })}
             </div>
           )}
@@ -82,7 +88,13 @@ export class people extends Component {
             <div ref={this.containerRef} className="people__container">
               {this.state.data.following &&
                 this.state.data.following.map((person) => {
-                  return <Attendee key={person} attendeeId={person} />;
+                  return (
+                    <Attendee
+                      key={person}
+                      attendeeId={person}
+                      login={this.props.login}
+                    />
+                  );
                 })}
             </div>
           )}
@@ -97,6 +109,7 @@ export class people extends Component {
 
 const mapStateToProps = (state) => ({
   currentUserId: state.auth.user.id,
+  login: state.auth.login,
 });
 
 const mapDispatchToProps = {};

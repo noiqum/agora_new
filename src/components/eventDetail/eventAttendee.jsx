@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Attendee from "./attendee";
 import firebase from "firebase/app";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 export class eventAttendee extends Component {
   state = {
@@ -16,9 +17,11 @@ export class eventAttendee extends Component {
       .doc(`events/${this.props.id}`)
       .onSnapshot((res) => {
         let data = res.data();
-        this.setState({
-          attendee: data.attendee,
-        });
+        if (data !== undefined) {
+          this.setState({
+            attendee: data.attendee,
+          });
+        }
       });
   }
   componentWillUnmount() {
@@ -31,11 +34,24 @@ export class eventAttendee extends Component {
       <div className="event-attendee__container">
         <h2>Who is going to this event..</h2>
         <div className="event-attendee__frame">
-          {attendee !== undefined
-            ? attendee.map((attendee) => {
-                return <Attendee key={Attendee} attendeeId={attendee} />;
-              })
-            : "By now still waiting for first one to join :)"}
+          <TransitionGroup component={null}>
+            {attendee !== undefined
+              ? attendee.map((attendee) => {
+                  return (
+                    <CSSTransition
+                      in={attendee}
+                      key={attendee}
+                      timeout={2000}
+                      classNames="participant"
+                    >
+                      <Attendee key={Attendee} attendeeId={attendee} />
+                    </CSSTransition>
+                  );
+                })
+              : attendee !== undefined && attendee.length < 1
+              ? "By now still waiting for first one to join :)"
+              : null}
+          </TransitionGroup>
         </div>
       </div>
     );

@@ -50,6 +50,10 @@ const authReducer = (state = initialstate, action) => {
     case "LOGOUT":
       return {
         ...state,
+        user: {
+          ...state.user,
+          ...initialstate.user,
+        },
         login: false,
         signup: false,
         signupProcess: false,
@@ -172,6 +176,18 @@ const authReducer = (state = initialstate, action) => {
       };
     case "ADD_FOLLOWER":
       return state;
+    case "RESIGN_START":
+      return {
+        ...state,
+        resign: true,
+        resignSuccess: false,
+      };
+    case "RESIGN_END":
+      return {
+        ...state,
+        resign: false,
+        resignSuccess: true,
+      };
     default:
       return state;
   }

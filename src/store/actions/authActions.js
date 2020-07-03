@@ -163,3 +163,30 @@ export const onSignupClick = (email, password, displayName) => {
       .catch((err) => dispatch(signupFailed(err.message)));
   };
 };
+export const resignStart = () => {
+  return {
+    type: "RESIGN_START",
+  };
+};
+
+export const resignEnd = () => {
+  return {
+    type: "RESIGN_END",
+  };
+};
+export const resignIn = (credential) => {
+  return async (dispatch) => {
+    try {
+      let user = firebase.auth().currentUser;
+      dispatch(resignStart());
+      let signState = await user
+        .reauthenticateWithCredential(credential)
+        .then(() => true);
+      if (signState) {
+        dispatch(resignEnd());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

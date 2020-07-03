@@ -1,9 +1,9 @@
 //event cover image update
 
 //fix svg console warnings
-
+//page transitionlar eksik people ve event page
 // eventleri search edecek bir component yaz
-//people page
+
 //favicon fix not use png
 //event form da saat opsiyonu yok ve database e saat i eklemek gerek
 // profile update page udate no ux

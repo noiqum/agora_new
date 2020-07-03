@@ -24,3 +24,21 @@
     padding: 2rem;
   }
 }
+
+.participant-enter {
+  opacity: 1;
+  scale: 0;
+}
+.participant-enter-active {
+  opacity: 1;
+  scale: 1;
+  transition: all 2000ms;
+}
+.participant-exit {
+  opacity: 1;
+}
+.participant-exit-active {
+  opacity: 1;
+  scale: 0;
+  transition: opacity 2000ms;
+}

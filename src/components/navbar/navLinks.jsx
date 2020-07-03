@@ -31,10 +31,10 @@ function navLinks({
             <Link
               style={linkStyle}
               className="link-router"
-              to="/event"
+              to="/search"
               onClick={onDefaultClick}
             >
-              <li className="navbar__nav__list__link">event</li>
+              <li className="navbar__nav__list__link">search</li>
             </Link>
           )}
 
