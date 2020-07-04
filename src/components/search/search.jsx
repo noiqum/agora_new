@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import gsap from "gsap/gsap-core";
+import { Link } from "react-router-dom";
+import { toastr } from "react-redux-toastr";
 //utils
 import { randomEvent, filterEvents } from "../../config/utils";
 ///
 import firebase from "firebase/app";
 ///components
 import Offer from "./offer";
-import gsap from "gsap/gsap-core";
-import { Link } from "react-router-dom";
-import { toastr } from "react-redux-toastr";
+import Result from "./result";
 ///
 
 export class search extends Component {
@@ -221,8 +222,12 @@ export class search extends Component {
             {this.state.results &&
               this.state.results.map((i) => {
                 return (
-                  <Link key={i.id} to={{ pathname: `/event-detail/${i.id}` }}>
-                    <div>{i.title}</div>
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    key={i.id}
+                    to={{ pathname: `/event-detail/${i.id}` }}
+                  >
+                    <Result event={i} />
                   </Link>
                 );
               })}

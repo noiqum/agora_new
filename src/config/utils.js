@@ -109,7 +109,7 @@ export const randomEvent = (events) => {
   let randomIndex = [];
   let eventList = [];
   for (var i = 0; i < 3; i++) {
-    randomIndex.push(Math.floor(Math.random() * size + 1));
+    randomIndex.push(Math.floor(Math.random() * size));
     eventList.push(events[randomIndex[i]]);
   }
 

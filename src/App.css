@@ -2021,6 +2021,21 @@
     color: #028090;
     padding: 3px 7px; }
 
+.result {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2rem 3rem; }
+  .result h4 {
+    font-size: 2rem;
+    padding: 5px 2px;
+    color: #05668d; }
+  .result p {
+    font-size: 1.6rem;
+    padding: 5px 10px;
+    color: #028090; }
+
 * {
   margin: 0;
   padding: 0;
