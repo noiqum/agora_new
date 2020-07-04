@@ -26,8 +26,6 @@ export class basic extends Component {
         duration: 2,
         ease: "power3.inout",
       });
-
-      console.log(this.basicRef.current);
     } else {
       return;
     }

@@ -115,3 +115,22 @@ export const randomEvent = (events) => {
 
   return eventList;
 };
+
+export const filterEvents = (size, result, queryList) => {
+  switch (size) {
+    case 2:
+      return result.filter((e) => {
+        return e[queryList[1].argument] === queryList[1].content;
+      });
+
+    case 3:
+      let firstLevel = result.filter((e) => {
+        return e[queryList[1].argument] === queryList[1].content;
+      });
+      return firstLevel.filter((e) => {
+        return e[queryList[2].argument] === queryList[2].content;
+      });
+    default:
+      break;
+  }
+};
