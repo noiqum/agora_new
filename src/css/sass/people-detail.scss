@@ -136,4 +136,18 @@
       align-self: start;
     }
   }
+  &__follower,
+  &__following {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    & img {
+      width: unset;
+      height: unset;
+      align-self: center;
+    }
+  }
 }

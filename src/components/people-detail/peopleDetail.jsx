@@ -12,8 +12,9 @@ import {
 import EventLink from "../people/event-link";
 import { addfollower, unFollow } from "../../store/actions/profileActions";
 import User from "../../css/images/user.png";
-import gsap from "gsap/gsap-core";
+import ContactItem from "../profile/contact-item";
 import Loading from "../loading/loading";
+import Attendee from "../eventDetail/attendee";
 
 export class peopleDetail extends Component {
   state = {
@@ -111,7 +112,13 @@ export class peopleDetail extends Component {
                   })}
                 </div>
               )}
-
+              {checkValidityArray(persona.contact) && (
+                <div>
+                  {persona.contact.map((elm, index) => {
+                    return <ContactItem elm={elm} key={index} />;
+                  })}
+                </div>
+              )}
               {checkValidityArray(persona.hostEvent) && (
                 <div>
                   <h3>host events :</h3>
@@ -136,10 +143,19 @@ export class peopleDetail extends Component {
                   </div>
                 </div>
               )}
-              {checkValidityArray(persona.people) && (
-                <div className="persona__people">
-                  {persona.people.map((elm) => {
-                    return elm;
+              <h3>followers :</h3>
+              {checkValidityArray(persona.follower) && (
+                <div className="persona__follower">
+                  {persona.follower.map((elm) => {
+                    return <Attendee attendeeId={elm} key={elm} />;
+                  })}
+                </div>
+              )}
+              <h3>following</h3>
+              {checkValidityArray(persona.following) && (
+                <div className="persona__following">
+                  {persona.following.map((elm) => {
+                    return <Attendee attendeeId={elm} key={elm} />;
                   })}
                 </div>
               )}

@@ -14,7 +14,7 @@ import Search from "./components/search/search";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter forceRefresh={true}>
       <div className="App">
         <Navbar />
         <Switch>

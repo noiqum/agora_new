@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import gsap from "gsap/gsap-core";
 import { Link } from "react-router-dom";
 import { toastr } from "react-redux-toastr";
+
 //utils
 import { randomEvent, filterEvents } from "../../config/utils";
 ///

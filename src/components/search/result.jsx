@@ -6,6 +6,7 @@ function Result({ event }) {
       <h4>{event.title}</h4>
       <p>{event.category}</p>
       <p>hosted by:{event.hostName}</p>
+      <p>{event.city}</p>
       <p>{event.date}</p>
       <p>Click for more...</p>
     </div>

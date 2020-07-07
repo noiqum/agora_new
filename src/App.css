@@ -1776,6 +1776,16 @@
       .persona h3 {
         justify-self: start;
         align-self: start; } }
+  .persona__follower, .persona__following {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap; }
+    .persona__follower img, .persona__following img {
+      width: unset;
+      height: unset;
+      align-self: center; }
 
 .eventlink {
   display: grid;

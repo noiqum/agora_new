@@ -230,7 +230,8 @@ export const updateAboutMeClick = (bio, job, interest, id) => {
           .update({
             bio: bio,
           })
-          .then(dispatch(updateAboutMe(task, info)));
+          .then(dispatch(updateAboutMe(task, info)))
+          .then(toastr.success("success", "the field updated"));
       }
       if (dataJob !== job) {
         task = "job";
@@ -240,7 +241,8 @@ export const updateAboutMeClick = (bio, job, interest, id) => {
           .update({
             job: job,
           })
-          .then(dispatch(updateAboutMe(task, info)));
+          .then(dispatch(updateAboutMe(task, info)))
+          .then(toastr.success("success", "the field updated"));
       }
       if (dataInterest === undefined) {
         task = "interest";
@@ -255,7 +257,8 @@ export const updateAboutMeClick = (bio, job, interest, id) => {
           await firestore
             .doc(`user/${id}`)
             .update({ interest: interest })
-            .then(dispatch(updateAboutMe(task, info)));
+            .then(dispatch(updateAboutMe(task, info)))
+            .then(toastr.success("success", "the field updated"));
         }
       }
     } catch (error) {
@@ -278,7 +281,8 @@ export const deleteContactClick = (elm, id) => {
       .update({
         contact: firebase.firestore.FieldValue.arrayRemove(elm),
       })
-      .then(dispatch(deleteContact(elm)));
+      .then(dispatch(deleteContact(elm)))
+      .then(toastr.success("success", "the field updated"));
   };
 };
 
@@ -297,6 +301,7 @@ export const addContactClick = (elm, id) => {
         contact: firebase.firestore.FieldValue.arrayUnion(elm),
       })
       .then(dispatch(addContact(elm)))
+      .then(toastr.success("success", "the field updated"))
       .catch((err) => {
         console.warn(err);
       });
