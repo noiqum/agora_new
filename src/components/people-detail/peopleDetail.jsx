@@ -55,6 +55,12 @@ export class peopleDetail extends Component {
         }
       });
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.id !== prevProps.id) {
+      this.props.history.push(`/people/people/${this.props.id}`);
+    }
+  }
   handleFollow = () => {
     if (this.state.follow === false) {
       this.props.follow(this.state.id, this.props.userId);

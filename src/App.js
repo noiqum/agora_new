@@ -11,17 +11,29 @@ import Update from "./components/update/update";
 import People from "./components/people/people";
 import PeopleDetail from "./components/people-detail/peopleDetail";
 import Search from "./components/search/search";
+import DirectHub from "./components/people-detail/directHub";
 
 function App() {
   return (
-    <BrowserRouter forceRefresh={true}>
+    <BrowserRouter>
       <div className="App">
         <Navbar />
         <Switch>
           <Route path="/" exact component={Container} />
           <Route path="/search" component={Search} />
           <Route path="/people" exact component={People} />
-          <Route path="/people/:peopleid" exact component={PeopleDetail} />
+          <Route
+            path="/people/:peopleid"
+            exact
+            strict
+            render={({ match }) => <PeopleDetail id={match.params.peopleid} />}
+          />
+          <Route
+            path="/people/people/:peopleid"
+            exact
+            strict
+            render={({ match }) => <DirectHub id={match.params.peopleid} />}
+          />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/event-detail/:id" exact component={EventDetail} />
