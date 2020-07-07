@@ -12,7 +12,7 @@ import {
 import EventLink from "../people/event-link";
 import { addfollower, unFollow } from "../../store/actions/profileActions";
 import User from "../../css/images/user.png";
-import ContactItem from "../profile/contact-item";
+import ContactLink from "./contact-link";
 import Loading from "../loading/loading";
 import Attendee from "../eventDetail/attendee";
 
@@ -119,9 +119,9 @@ export class peopleDetail extends Component {
                 </div>
               )}
               {checkValidityArray(persona.contact) && (
-                <div>
+                <div className="persona__contact">
                   {persona.contact.map((elm, index) => {
-                    return <ContactItem elm={elm} key={index} />;
+                    return <ContactLink elm={elm} key={index} />;
                   })}
                 </div>
               )}

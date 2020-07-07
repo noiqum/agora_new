@@ -150,4 +150,27 @@
       align-self: center;
     }
   }
+  &__contact {
+    display: flex;
+    margin: 2rem 0px;
+    & .contact-link {
+      display: flex;
+      width: 8rem;
+      height: 7rem;
+      background-color: transparent;
+      box-shadow: 0px 0px 8px rgba(#000, 0.2);
+      border: 1px solid $grey-light;
+      border-radius: 3px;
+      padding: 5px;
+      margin-left: 2rem;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      & .contact-link_item {
+        & > svg {
+          fill: $blue-dark;
+        }
+      }
+    }
+  }
 }

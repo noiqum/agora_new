@@ -1786,6 +1786,24 @@
       width: unset;
       height: unset;
       align-self: center; }
+  .persona__contact {
+    display: flex;
+    margin: 2rem 0px; }
+    .persona__contact .contact-link {
+      display: flex;
+      width: 8rem;
+      height: 7rem;
+      background-color: transparent;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+      border: 1px solid #d7d7d9;
+      border-radius: 3px;
+      padding: 5px;
+      margin-left: 2rem;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer; }
+      .persona__contact .contact-link .contact-link_item > svg {
+        fill: #05668d; }
 
 .eventlink {
   display: grid;
