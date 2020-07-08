@@ -5,8 +5,5 @@
 //event chat eksik
 
 //favicon fix not use png
-//event form da saat opsiyonu yok ve database e saat i eklemek gerek
-//profile page conctact part finish
-//people page contact part don t show up
-
+//event detail page mobil version fix after 600px ila 1300 arasi
 // google drive 186 de kaldik

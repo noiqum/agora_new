@@ -1018,12 +1018,58 @@
   scale: 0;
   transition: opacity 2000ms; }
 
-@media screen and (min-width: 600px) {
-  .event-chat__container {
-    grid-row: 3/4;
-    grid-column: 1/2;
-    width: 60%;
-    margin: 3rem; } }
+.event-chat__container {
+  color: #05668d; }
+  @media screen and (min-width: 600px) {
+    .event-chat__container {
+      grid-row: 3/4;
+      grid-column: 1/2;
+      width: 60%;
+      margin: 3rem; } }
+
+.event-chat__frame {
+  width: 100%;
+  min-height: 10rem;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 5px;
+  flex-direction: column;
+  padding: 1rem; }
+
+.event-chat__text {
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  margin-top: 2rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column; }
+  .event-chat__text textarea {
+    width: 100%;
+    font-size: 1.5rem;
+    color: #05668d;
+    padding: 1rem; }
+  .event-chat__text__button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    margin-top: 1rem; }
+    .event-chat__text__button button {
+      padding: 5px 1.5rem;
+      letter-spacing: 1px;
+      background-color: rgba(205, 133, 63, 0.8);
+      font-size: 1.6rem;
+      border: none;
+      border-radius: 5px;
+      margin: 5px;
+      color: #fff;
+      cursor: pointer; }
+      .event-chat__text__button button:active {
+        transform: translateY(3px); }
 
 .attendee {
   max-width: 10rem;
@@ -2063,6 +2109,51 @@
     font-size: 1.6rem;
     padding: 5px 10px;
     color: #028090; }
+
+.comment {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: rgba(2, 195, 154, 0.1);
+  padding: 1rem;
+  margin: 5px;
+  border-radius: 5px; }
+  .comment__owner a {
+    text-decoration: none;
+    font-size: 1.3rem; }
+    .comment__owner a span {
+      text-transform: uppercase;
+      padding: 5px 10px;
+      color: #05668d; }
+    .comment__owner a img {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      display: inline-block; }
+  .comment__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; }
+    .comment__body p {
+      font-size: 1.3rem; }
+    .comment__body button {
+      cursor: pointer;
+      font-size: 1rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 3px 2px;
+      border: none;
+      border-radius: 3px;
+      color: #504f4f;
+      justify-self: flex-end;
+      align-self: flex-end; }
+      .comment__body button:hover {
+        background-color: gray;
+        color: red; }
 
 * {
   margin: 0;

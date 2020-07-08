@@ -1,0 +1,61 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+.comment {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: rgba($green-light, 0.1);
+  padding: 1rem;
+  margin: 5px;
+  border-radius: 5px;
+
+  &__owner {
+    & a {
+      text-decoration: none;
+      font-size: 1.3rem;
+
+      & span {
+        text-transform: uppercase;
+        padding: 5px 10px;
+        color: $blue-dark;
+      }
+
+      & img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        display: inline-block;
+      }
+    }
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    & p {
+      font-size: 1.3rem;
+    }
+    & button {
+      cursor: pointer;
+      font-size: 1rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 3px 2px;
+      border: none;
+      border-radius: 3px;
+      color: $grey-dark;
+      justify-self: flex-end;
+      align-self: flex-end;
+
+      &:hover {
+        background-color: darken(grey, 0.1);
+        color: red;
+      }
+    }
+  }
+}

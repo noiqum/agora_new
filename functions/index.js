@@ -33,17 +33,35 @@ const saveNotification = async (notification) => {
       time: Date.now(),
       peopleLink: addedOne,
     };
-    return admin
+    let check = await admin
       .firestore()
-      .collection("notification")
-      .doc(eventHost)
-      .update({
-        note: admin.firestore.FieldValue.arrayUnion(note),
-      })
-      .then(console.log("done"))
-      .catch((err) => {
-        console.log(err);
-      });
+      .doc(`notification/${addedOne}`)
+      .get()
+      .then((res) => res.exists);
+
+    return check
+      ? admin
+          .firestore()
+          .collection("notification")
+          .doc(eventHost)
+          .update({
+            note: admin.firestore.FieldValue.arrayUnion(note),
+          })
+          .then(console.log("done"))
+          .catch((err) => {
+            console.log(err);
+          })
+      : admin
+          .firestore()
+          .collection("notification")
+          .doc(eventHost)
+          .set({
+            note: [note],
+          })
+          .then(console.log("done"))
+          .catch((err) => {
+            console.log(err);
+          });
   } else {
     return;
   }

@@ -1,17 +1,64 @@
-@import './mixins.scss';
-@import './variables.scss';
+@import "./mixins.scss";
+@import "./variables.scss";
 
-
-.event-chat{
-
-    &__container{
-        @include respond(middle){
-            grid-row: 3/4;
-            grid-column: 1/2;
-            width: 60%;
-            margin: 3rem;
-    
-        }
-       
+.event-chat {
+  &__container {
+    color: $blue-dark;
+    @include respond(middle) {
+      grid-row: 3/4;
+      grid-column: 1/2;
+      width: 60%;
+      margin: 3rem;
     }
+  }
+
+  &__frame {
+    width: 100%;
+    min-height: 10rem;
+    border: 1px solid rgba(grey, 0.2);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-radius: 5px;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  &__text {
+    width: 100%;
+    border: 1px solid rgba(grey, 0.2);
+    margin-top: 2rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    & textarea {
+      width: 100%;
+      font-size: 1.5rem;
+      color: $blue-dark;
+      padding: 1rem;
+    }
+    &__button {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      width: 100%;
+      margin-top: 1rem;
+      & button {
+        padding: 5px 1.5rem;
+        letter-spacing: 1px;
+        background-color: rgba(peru, 0.8);
+        font-size: 1.6rem;
+        border: none;
+        border-radius: 5px;
+        margin: 5px;
+        color: #fff;
+        cursor: pointer;
+        &:active {
+          transform: translateY(3px);
+        }
+      }
+    }
+  }
 }
