@@ -46,27 +46,29 @@ export class listing extends Component {
       <div ref={this.listingRef} className="listing">
         <span className="listing__title">Notifications</span>
         {this.state.notes !== undefined
-          ? this.state.notes.map((note) => {
-              return (
-                <div className="listing__item">
-                  <p>
-                    {note.m}
-                    {"  "}
-                    at {dateConvert(note.time)}
-                    {"  "}
-                    {note.people ? (
-                      <Link to={`/people/${note.peopleLink}`}>
-                        <span>See the follower</span>
-                      </Link>
-                    ) : note.event ? (
-                      <Link to={`/people/${note.peopleLink}`}>
-                        <span>See the Participant</span>
-                      </Link>
-                    ) : null}
-                  </p>
-                </div>
-              );
-            })
+          ? this.state.notes
+              .sort((a, b) => b.time - a.time)
+              .map((note) => {
+                return (
+                  <div className="listing__item">
+                    <p>
+                      {note.m}
+                      {"  "}
+                      at {dateConvert(note.time)}
+                      {"  "}
+                      {note.people ? (
+                        <Link to={`/people/${note.peopleLink}`}>
+                          <span>See the follower</span>
+                        </Link>
+                      ) : note.event ? (
+                        <Link to={`/event-detail/${note.peopleLink}`}>
+                          <span>See the Participant</span>
+                        </Link>
+                      ) : null}
+                    </p>
+                  </div>
+                );
+              })
           : null}
       </div>
     );
