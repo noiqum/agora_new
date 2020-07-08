@@ -75,54 +75,60 @@ exports.eventNotification = functions.firestore
     let notification = { m: doc, id: id, mb: docBefore };
     return saveNotification(notification);
   });
+/////////////////////////////////////
+////////////////////////////////////
+///////////////////////////////////
 const saveCommentNotification = async (comment) => {
-  let commentOwnerName = comment.m.msg.pop().ownerName;
-  var eventTitle;
-  // await admin.firestore().collection("comments").doc("test2").set({
-  //   result: comment.m.msg,
-  // });
-  let eventLink = comment.eventId;
-  let eventHostId = await admin
-    .firestore()
-    .doc(`events/${comment.eventId}`)
-    .get()
-    .then((res) => {
-      let data = res.data();
-      eventTitle = data.title;
-      return data.hostUserId;
-    });
-  let check = await admin
-    .firestore()
-    .collection("notification")
-    .doc(`${eventHostId}`)
-    .get()
-    .then((res) => {
-      return res.exists;
-    });
+  let updateNeeded = comment.m.msg.length > comment.mb.msg.length;
+  if (updateNeeded) {
+    let commentOwnerName = comment.m.msg.pop().ownerName;
 
-  let note = {
-    m: `${commentOwnerName} commented on ${eventTitle} `,
-    peopleLink: eventLink,
-    event: true,
-    people: false,
-    time: Date.now(),
-  };
-  return check
-    ? admin
-        .firestore()
-        .collection("notification")
-        .doc(`${eventHostId}`)
-        .update({
-          note: admin.firestore.FieldValue.arrayUnion(note),
-        })
-        .then((res) => console.log("done"))
-        .catch((err) => console.log(err))
-    : admin
-        .firestore()
-        .doc(`notification/${eventHostId}`)
-        .set({
-          note: [note],
-        });
+    var eventTitle;
+    let eventLink = comment.eventId;
+    let eventHostId = await admin
+      .firestore()
+      .doc(`events/${comment.eventId}`)
+      .get()
+      .then((res) => {
+        let data = res.data();
+        eventTitle = data.title;
+        return data.hostUserId;
+      });
+    let check = await admin
+      .firestore()
+      .collection("notification")
+      .doc(`${eventHostId}`)
+      .get()
+      .then((res) => {
+        return res.exists;
+      });
+
+    let note = {
+      m: `${commentOwnerName} commented on ${eventTitle} `,
+      peopleLink: eventLink,
+      event: true,
+      people: false,
+      time: Date.now(),
+    };
+    return check
+      ? admin
+          .firestore()
+          .collection("notification")
+          .doc(`${eventHostId}`)
+          .update({
+            note: admin.firestore.FieldValue.arrayUnion(note),
+          })
+          .then((res) => console.log("done"))
+          .catch((err) => console.log(err))
+      : admin
+          .firestore()
+          .doc(`notification/${eventHostId}`)
+          .set({
+            note: [note],
+          });
+  } else {
+    return;
+  }
 };
 exports.commentNotification = functions.firestore
   .document("comments/{eventId}")

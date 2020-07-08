@@ -106,7 +106,7 @@ export class eventDashBoard extends Component {
               pageStart={0}
               loadMore={this.getNextEvents}
               hasMore={this.state.moreEvents}
-              initialLoad={false}
+              initialLoad={true}
               loader={
                 <div className="loader" key={0}>
                   <Loading />
