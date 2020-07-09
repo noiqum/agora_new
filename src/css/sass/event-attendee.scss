@@ -7,8 +7,11 @@
     @include respond(middle) {
       grid-row: 1/2;
       grid-column: 2/3;
-      width: 80%;
+      width: 90%;
       margin-top: 2rem;
+    }
+    @media screen and (min-width: 600px) and (max-width: 800px) {
+      width: 100%;
     }
 
     & h2 {

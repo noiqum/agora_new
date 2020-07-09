@@ -10,6 +10,9 @@
       width: 60%;
       margin: 3rem;
     }
+    @media screen and (min-width: 600px) and (max-width: 1200px) {
+      width: 90%;
+    }
   }
 
   &__frame {

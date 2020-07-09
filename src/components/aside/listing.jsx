@@ -28,7 +28,6 @@ export class listing extends Component {
       .then(
         (doc) => {
           let notes = doc.data();
-          console.log(notes);
           if (notes && Array.isArray(notes.note)) {
             this.setState({
               notes: notes.note,

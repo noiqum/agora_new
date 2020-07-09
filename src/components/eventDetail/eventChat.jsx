@@ -71,7 +71,7 @@ export class eventChat extends Component {
             id="text"
             cols="60"
             rows="10"
-            resize
+            resize="true"
             placeholder="Share comments  on the event with us ,to post your comment you should be log in first"
             onChange={(e) => {
               this.setState({

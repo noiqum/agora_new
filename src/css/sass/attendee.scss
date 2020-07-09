@@ -1,35 +1,41 @@
-@import './mixins.scss';
-@import './variables.scss';
+@import "./mixins.scss";
+@import "./variables.scss";
 
-.attendee{
-    max-width: 10rem;
-    max-height: 12rem;
-    border: 2px solid $grey-light;
-    margin-top: 2rem;
-    border-radius: 5px;
-    box-shadow: 0px 2px 4px $grey-light;
-    padding: 1rem 1rem;
-    @include center;
-    margin-right: 2rem;
-    cursor: pointer;
-    & p{
-        font-size: 1.6rem;
-        text-align: center;
-        color: $blue-dark;
-        margin-top: 0.5rem;
-        
-    }
+.attendee {
+  max-width: 10rem;
+  max-height: 12rem;
+  border: 2px solid $grey-light;
+  margin: 3px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px $grey-light;
 
-    & img {
-        border-radius: 50%;
-        border: 1px solid white;
-        display: inline-block;
-        border: 5px solid $blue-dark;
-        filter: grayscale(120%);
+  @media screen and (min-width: 1200px) {
+    margin: 1rem;
+  }
+  @media screen and (min-width: 600px) and (max-width: 800px) {
+    max-width: 8rem;
+    max-height: 10rem;
+  }
 
-    }
+  @include center;
 
-    &:hover img{
-        filter: none;
-    }
+  cursor: pointer;
+  & p {
+    font-size: 1.6rem;
+    text-align: center;
+    color: $blue-dark;
+    margin-top: 0.5rem;
+  }
+
+  & img {
+    border-radius: 50%;
+    border: 1px solid white;
+    display: inline-block;
+    border: 5px solid $blue-dark;
+    filter: grayscale(120%);
+  }
+
+  &:hover img {
+    filter: none;
+  }
 }
