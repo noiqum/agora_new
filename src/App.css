@@ -2169,6 +2169,32 @@
         background-color: gray;
         color: red; }
 
+.account {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: #05668d; }
+  .account h2 {
+    font-size: 1.7rem; }
+  .account input {
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid #00a896; }
+  .account button {
+    padding: 0.5rem 1rem;
+    background-color: #d7d7d9;
+    color: green;
+    border: none;
+    border-radius: 5px; }
+    .account button:hover {
+      color: peru; }
+    .account button:active {
+      transform: translateY(2px); }
+
 * {
   margin: 0;
   padding: 0;

@@ -181,7 +181,10 @@ export const resignIn = (credential) => {
       dispatch(resignStart());
       let signState = await user
         .reauthenticateWithCredential(credential)
-        .then(() => true);
+        .then(() => {
+          console.log("re auth");
+          return true;
+        });
       if (signState) {
         dispatch(resignEnd());
       }
